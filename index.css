@@ -1,0 +1,339 @@
+/* ```css */
+/* =========================
+ブラウザの余白リセット
+========================= */
+
+*{
+margin:0;
+/* 外側の余白を0にする */
+
+padding:0;
+/* 内側の余白を0にする */
+
+box-sizing:border-box;
+/* widthにpaddingやborderを含める
+これがないとサイズ計算が狂う */
+}
+
+
+
+/* =========================
+ページ背景
+========================= */
+
+body{
+
+background:#111;
+/* 背景色（黒） */
+
+font-family:sans-serif;
+/* フォント（ゴシック体） */
+
+display:flex;
+/* flexレイアウトを使う */
+
+justify-content:center;
+/* 横方向中央 */
+
+align-items:center;
+/* 縦方向中央 */
+
+height:100vh;
+/* 画面の高さ100% */
+
+color:white;
+/* 基本文字色 */
+
+}
+
+
+
+/* =========================
+本の外枠
+========================= */
+
+.book-wrapper{
+
+text-align:center;
+/* 中央配置 */
+
+}
+
+
+
+/* =========================
+タイトル
+========================= */
+
+.title{
+
+margin-bottom:20px;
+/* 下の余白 */
+
+font-size:18px;
+/* 文字サイズ */
+
+letter-spacing:2px;
+/* 文字間隔 */
+
+}
+
+
+
+/* =========================
+本
+========================= */
+
+.book{
+
+position:relative;
+/* 子要素の位置の基準 */
+
+width:380px;
+/* 本の横幅 */
+
+height:520px;
+/* 本の高さ */
+
+perspective:2500px;
+/*
+3D空間を作る
+
+これがないと
+ページめくりが立体にならない
+*/
+
+}
+
+/* ページの重なり順 */
+#page1{ z-index:3; }
+#page2{ z-index:2; }
+#page3{ z-index:1; }
+
+.paper{
+transform-origin: left;
+/* 左を軸に回転（本のめくり） */
+}
+
+.book{
+transform-style: preserve-3d;
+}
+
+/* =========================
+紙（ページ）
+========================= */
+
+.paper{
+
+position:absolute;
+/* 全ての紙を同じ場所に重ねる */
+
+width:100%;
+
+height:100%;
+
+top:0;
+left:0;
+
+transform-style:preserve-3d;
+/*
+子要素の3Dを維持
+*/
+
+transition:1s;
+/*
+transformが変わるとき
+1秒でアニメーション
+*/
+
+}
+
+
+
+/* =========================
+表ページと裏ページ
+========================= */
+
+.front,
+.back{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+background:white;
+/* ページ色 */
+
+color:black;
+/* 文字色 */
+
+display:flex;
+/* 中央配置 */
+
+flex-direction:column;
+/* 縦並び */
+
+justify-content:center;
+/* 縦中央 */
+
+align-items:center;
+/* 横中央 */
+
+padding:40px;
+/* 内側余白 */
+
+backface-visibility:hidden;
+/*
+裏面が透けて見えないようにする
+*/
+
+box-shadow:
+0 15px 30px rgba(0,0,0,.5);
+/* ページの影 */
+
+}
+
+
+
+/* =========================
+裏ページ
+========================= */
+
+.back{
+
+transform:rotateY(180deg);
+/*
+Y軸で180度回転
+
+紙の裏側になる
+*/
+
+}
+
+
+
+/* =========================
+表紙
+========================= */
+
+.cover{
+
+background:#000;
+
+color:white;
+
+}
+
+
+
+/* =========================
+ロゴ
+========================= */
+
+.logo{
+
+width:160px;
+/* サイズ */
+
+margin-bottom:20px;
+
+filter:brightness(0) invert(1);
+/*
+黒ロゴを白ロゴに変換
+*/
+
+}
+
+
+
+/* =========================
+写真
+========================= */
+
+.photo{
+
+width:100%;
+
+border-radius:10px;
+/* 角丸 */
+
+margin-top:20px;
+
+}
+
+
+
+/* =========================
+サービスリスト
+========================= */
+
+ul{
+
+line-height:2;
+/* 行間 */
+
+margin-top:20px;
+
+}
+
+
+
+/* =========================
+ボタン
+========================= */
+
+.btn{
+
+margin-top:20px;
+
+padding:10px 20px;
+
+background:#007bff;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:5px;
+
+}
+
+
+
+/* LINEボタン */
+
+.line{
+
+background:#06c755;
+
+}
+
+
+
+/* =========================
+ページ操作ボタン
+========================= */
+
+.controls{
+
+margin-top:20px;
+
+}
+
+
+
+.controls button{
+
+padding:10px 20px;
+
+font-size:18px;
+
+margin:5px;
+
+cursor:pointer;
+/* マウスを指マークにする */
+
+}
+

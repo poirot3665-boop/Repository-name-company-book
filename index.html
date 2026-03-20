@@ -1,0 +1,218 @@
+<!-- ```html -->
+<!DOCTYPE html>
+<!-- HTML5を使うという宣言 -->
+
+<html lang="ja">
+<!-- 日本語ページであることを指定 -->
+
+<head>
+
+    <meta charset="UTF-8">
+    <!-- 日本語が文字化けしないようにする -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- スマホ画面に合わせて表示する設定 -->
+
+    <title>S-SYSTEM デジタル会社案内</title>
+    <!-- ブラウザのタブに表示されるタイトル -->
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="index.css" rel="stylesheet" media="all">
+
+    <!-- style.cssというデザインファイルを読み込む -->
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+会社案内の本全体
+========================= -->
+
+    <div class="book-wrapper">
+        <!-- 本を中央に配置するための外枠 -->
+
+        <h1 class="title">
+            S-SYSTEM DIGITAL COMPANY BOOK
+        </h1>
+        <!-- 本のタイトル -->
+
+
+        <!-- =========================
+本の本体
+========================= -->
+
+        <div class="book">
+
+
+            <!-- =========================
+1枚目の紙
+========================= -->
+
+            <div class="paper" id="page1">
+                <!-- paper = 本の紙1枚 -->
+
+                <div class="front cover">
+                    <!-- front = 表面
+cover = 表紙デザイン -->
+
+                    <img src="img/logo.png" class="logo">
+                    <!-- 会社ロゴ -->
+
+                    <h2>S-SYSTEM</h2>
+
+                    <p>
+                        プロの清掃技術で<br>
+                        空間を再生する
+                    </p>
+
+                </div>
+
+
+                <div class="back">
+                    <!-- back = 紙の裏面 -->
+
+                    <h3>ABOUT US</h3>
+
+                    <p>代表者：佐々木 健二</p>
+
+                    <p>設立：2024年</p>
+
+                    <p>所在地：函館市港町3丁目4番22号</p>
+
+                    <p>
+                        TEL
+                        <a href="tel:09064451070">
+                            090-6445-1070
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+2枚目の紙
+========================= -->
+
+            <div class="paper" id="page2">
+
+                <div class="front">
+
+                    <h3>SERVICE</h3>
+
+                    <ul>
+
+                        <li>ハウスクリーニング</li>
+
+                        <li>店舗清掃</li>
+
+                        <li>エアコン清掃</li>
+
+                        <li>退去清掃</li>
+
+                        <li>定期清掃</li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="back">
+
+                    <h3>MESSAGE</h3>
+
+                    <p>
+
+                        S-SYSTEMは<br><br>
+
+                        清掃を通して<br>
+
+                        お客様の空間を<br>
+
+                        より快適にすることを<br>
+
+                        使命としています。
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+3枚目の紙
+========================= -->
+
+            <div class="paper" id="page3">
+
+                <div class="front">
+
+                    <h3>WORKS</h3>
+
+                    <img src="img/clean1.jpg" class="photo">
+                    <!-- 清掃の作業写真 -->
+
+                    <p>
+                        店舗清掃事例
+                    </p>
+
+                </div>
+
+
+                <div class="back">
+
+                    <h3>CONTACT</h3>
+
+                    <p>
+
+                        お問い合わせは<br>
+                        お電話またはLINEで
+
+                    </p>
+
+                    <a href="tel:09064451070" class="btn">
+                        電話する
+                    </a>
+                    <!-- スマホなら押すと電話できる -->
+
+                    <a href="#" class="btn line">
+                        LINE問い合わせ
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+ページ操作ボタン
+========================= -->
+
+        <div class="controls">
+
+            <button onclick="prevPage()">◀</button>
+            <!-- 前のページに戻る -->
+
+            <button onclick="nextPage()">▶</button>
+            <!-- 次のページへ -->
+
+        </div>
+
+    </div>
+
+
+    <script src="index.js"></script>
+    <!-- JavaScript（ページめくり）を読み込む -->
+
+</body>
+
+</html>
