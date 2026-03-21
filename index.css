@@ -1,339 +1,370 @@
-/* ```css */
-/* =========================
-ブラウザの余白リセット
-========================= */
+@charset "utf-8";
 
-*{
-margin:0;
-/* 外側の余白を0にする */
+/*画像の伸縮設定、レスポンシブ*/
+img {
+    max-width: 100%;
+    height: auto;
+}
 
-padding:0;
-/* 内側の余白を0にする */
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    /* */
+}
 
-box-sizing:border-box;
-/* widthにpaddingやborderを含める
-これがないとサイズ計算が狂う */
+/* ヘッダー（タイトル）のスタイル */
+header {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    /* 影をつけて立体感を出す */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 50px 0;
+}
+
+header h1 {
+    /* 下側に少し余白を空ける */
+    margin: 0 0 0.5rem 0;
+    /* 文字のサイズを大きくする */
+    font-size: 2.5rem;
+}
+
+header p {
+    /* 余白をなくす */
+    margin: 0;
+    /* 文字サイズを設定 */
+    font-size: 1.1rem;
+    /* 少し透明にして、重くなりすぎないようにする */
+    opacity: 0.9;
+}
+
+/* ナビ */
+
+.menu {
+    /* メニュー項目が横並びに */
+    display: flex;
+    /*※コメントが上下不揃いの時、子要素（li）を垂直方向に中央揃えにする */
+    align-items: center;
+    /* 画面幅が狭いときに自動で折り返す */
+    flex-wrap: wrap;
+    /* メニュー全体を中央に配置する */
+    justify-content: center;
+    padding: 0;
+    /* 上下の余白と中央揃え */
+    margin: 20px auto;
+    /* リストの黒点を消す */
+    list-style: none;
+}
+
+.menu li {
+    margin: 10px;
+    /* list-style: none; */
+    /* border: 1px solid #f00;  だみー 
+    display: inline-block;
+    width: 300px;
+    margin: 20px 10px 0; */
+    /* box-sizing: border-box; */
+    /* margin: auto; */
+    /* 使うPCによって付加する */
+    /* margin-top: 20px; */
+}
+
+
+.menu a {
+    display: block;
+    /* 内側の余白 */
+    padding: 10px;
+    /* 外側の余白 */
+    /* margin: 5% 0; */
+    background: #007bff;
+    border-radius: 50px;
+    color: #fff;
+    /* 下線を消す/装飾を削除 */
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    /* アニメーションを滑らかにする */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* マウス乗った時*/
+.menu a:hover {
+    background: orange;
+    transform: translateY(-5px)
 }
 
 
 
-/* =========================
-ページ背景
-========================= */
+/* メインコンテンツのスタイル/レスポンシブ*/
+main {
+    /* widthの幅計算対象をborder-boxに変更 */
+    box-sizing: border-box;
+    /* 最大960pxまで自動伸縮する */
+    max-width: 960px;
+    margin: 20px auto;
+    /* padding: 1rem; */
+    padding: 4% 8%;
+    /*親の要素に合わせて指定比率で伸縮*/
+    background-color: #fff;
+    border-radius: 8px;
+    /* バックの白背景を軽く角を落として丸くする*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-body{
+/*画像の幅*/
+/* id="definition" を持つ要素の中にあるすべての <img> タグ（画像）の幅を100%に設定するという意味 */
+#definition img {
+    width: 100%;
+}
 
-background:#111;
-/* 背景色（黒） */
-
-font-family:sans-serif;
-/* フォント（ゴシック体） */
-
-display:flex;
-/* flexレイアウトを使う */
-
-justify-content:center;
-/* 横方向中央 */
-
-align-items:center;
-/* 縦方向中央 */
-
-height:100vh;
-/* 画面の高さ100% */
-
-color:white;
-/* 基本文字色 */
+section {
+    margin-bottom: 2rem;
+    border-bottom: 3px solid #e0e0e0;
+    padding-bottom: 2rem;
 
 }
 
+section:last-of-type {
+    border-bottom: none;
+}
 
+h2 {
+    /* color: #0056b3; */
+    color: red;
+    border-left: 5px solid #0056b3;
+    padding-left: 10px;
+    font-size: 2rem;
+}
 
-/* =========================
-本の外枠
-========================= */
+h3 {
+    color: #007bff;
+    font-size: 1.5rem;
+}
 
-.book-wrapper{
-
-text-align:center;
-/* 中央配置 */
-
+/* 行全体１文字下げる */
+p {
+    /* text-indent: 1em; */
+    padding-left: 1em;
 }
 
 
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
 
-/* =========================
-タイトル
-========================= */
+li {
+    margin-bottom: 0.5rem;
+}
 
-.title{
+/* フッターのスタイル */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 3rem;
+    border-radius: 5px;
+}
 
-margin-bottom:20px;
-/* 下の余白 */
+footer p {
+    /* 余白なくす */
+    margin: 0;
+    /* 文字サイズを小さくする */
+    font-size: 0.7rem;
+}
 
-font-size:18px;
-/* 文字サイズ */
+/* ------- */
 
-letter-spacing:2px;
-/* 文字間隔 */
+/* 画像をセンターに*/
+.flex-container {
+    display: flex;
+    /* 親要素をFlexコンテナにする */
+    flex-direction: column;
+    /* 子要素を縦に並べる */
+    justify-content: center;
+    /* 子要素を水平方向の中央に配置 */
+    align-items: center;
+    /* 子要素を垂直方向の中央に配置 */
+    height: 500px;
+    /* コンテンツを配置する高さを設定 */
+}
+
+.more {
+    text-align: right;
+    margin-top: 1rem;
+    /* 上に1行分の余白を追加 */
 
 }
 
+.more a {
+    color: green;
+}
 
+.more a:hover {
+    color: orange;
+    /* カーソルが乗ったときの色 */
+}
 
-/* =========================
-本
-========================= */
+.more a:active {
+    color: red;
+    /* クリックしたときの色 */
+    /* #003366;#0056b3  */
+}
 
-.book{
+/*pagetop*/
+.pagetop {
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    right: 10px;
+    bottom: 70px;
+}
 
-position:relative;
-/* 子要素の位置の基準 */
+.pagetop a {
+    display: block;
+    width: 45px;
+    height: 45px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+}
 
-width:380px;
-/* 本の横幅 */
+.pagetop a:hover {
+    background: rgba(255, 192, 9, 1);
+    color: #333;
+}
 
-height:520px;
-/* 本の高さ */
+.pagetop a::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+    transform: rotate(-45deg);
+}
 
-perspective:2500px;
-/*
-3D空間を作る
-
-これがないと
-ページめくりが立体にならない
-*/
+/* BGMコントロール部分*/
+.bgm-controls {
+    margin-top: 10px;
+    /*上に余白 */
+    padding: 10px;
+    /*内側四方に余白*/
+    /* background-color: #e0f2f7; */
+    /* 背景色 */
+    text-align: center;
+    /* センターに持っていく */
+    /* 角を丸*/
+    /* border-radius: 5px; */
+    /* ボックスに影つける */
+    /* box-shadow: 0 0 10px #fff; */
 
 }
 
-/* ページの重なり順 */
-#page1{ z-index:3; }
-#page2{ z-index:2; }
-#page3{ z-index:1; }
-
-.paper{
-transform-origin: left;
-/* 左を軸に回転（本のめくり） */
+/* BGMボタン  bgm-controlsの中の全てのボタンに適用 */
+.bgm-controls button {
+    /* 色相環の三原色　アクセント赤、ベース青、ボタン緑 */
+    background-color: MediumSeaGreen;
+    /* 文字白色 */
+    color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    /* 内側の余白 */
+    padding: 10px 10px;
+    /* 枠線を消す */
+    border: none;
+    /* 角を丸 */
+    border-radius: 10px;
+    /* マウスカーソル */
+    cursor: pointer;
+    /* ２つのボタンの間に隙間を作る */
+    margin: 0 20px;
+    /* 変化に2秒かける対象をbackground-colorとbox-shadowに指定 */
+    transition: background-color 2s, box-shadow 2s;
 }
 
-.book{
-transform-style: preserve-3d;
+.bgm-controls button:hover {
+    /* マウスをボタンの上に置いたとき少し濃い緑色 */
+    /* background-color: SeaGreen; */
+    /* マウスをボタンの上に置いたとき真ん中白くなる */
+    background: radial-gradient(closest-side, #86fea0, MediumSeaGreen);
+    /* box-shadowは2秒かけてゆっくりと表示される　↑が効いている */
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
 }
 
-/* =========================
-紙（ページ）
-========================= */
+/* メディアクエリ・レスポンシブ */
 
-.paper{
+@media screen and (max-width:640px) {
 
-position:absolute;
-/* 全ての紙を同じ場所に重ねる */
+    /* ヘッダーの文字サイズを調整 */
+    header h1 {
+        font-size: 1.8rem;
+    }
 
-width:100%;
+    header p {
+        font-size: 1rem;
+    }
 
-height:100%;
+    /* ナビゲーションメニュー全体を縦並びにする */
+    .menu {
+        flex-direction: column;
+        /* メニュー項目を縦に並べる */
+        gap: 10px;
+        /* 項目間の隙間を調整 */
+        align-items: center;
+        /* 縦並びの項目を中央揃えにする */
+    }
 
-top:0;
-left:0;
+    /* 各ナビゲーション項目（li）の調整 */
+    .menu li {
+        display: block;
+        /* ブロック要素にして独立させる */
+        width: 90%;
+        /* スマホでは幅を広げてタップしやすくする */
+        margin: 0 auto 10px;
+        /* 上下の余白と中央揃え */
+    }
 
-transform-style:preserve-3d;
-/*
-子要素の3Dを維持
-*/
+    /* メインコンテンツのパディングを調整 */
+    main {
+        padding: 1rem;
+    }
 
-transition:1s;
-/*
-transformが変わるとき
-1秒でアニメーション
-*/
+    /* 各セクションの見出しの文字サイズを調整 */
+    section h2 {
+        font-size: 1.5rem;
+    }
 
+    /* 記事内の見出しや定義リストの文字サイズを調整 */
+    article h3,
+    dt {
+        font-size: 1.2rem;
+    }
+
+    /* 段落の文字サイズを調整 */
+    p {
+        font-size: 0.95rem;
+    }
 }
-
-
-
-/* =========================
-表ページと裏ページ
-========================= */
-
-.front,
-.back{
-
-position:absolute;
-
-width:100%;
-
-height:100%;
-
-background:white;
-/* ページ色 */
-
-color:black;
-/* 文字色 */
-
-display:flex;
-/* 中央配置 */
-
-flex-direction:column;
-/* 縦並び */
-
-justify-content:center;
-/* 縦中央 */
-
-align-items:center;
-/* 横中央 */
-
-padding:40px;
-/* 内側余白 */
-
-backface-visibility:hidden;
-/*
-裏面が透けて見えないようにする
-*/
-
-box-shadow:
-0 15px 30px rgba(0,0,0,.5);
-/* ページの影 */
-
-}
-
-
-
-/* =========================
-裏ページ
-========================= */
-
-.back{
-
-transform:rotateY(180deg);
-/*
-Y軸で180度回転
-
-紙の裏側になる
-*/
-
-}
-
-
-
-/* =========================
-表紙
-========================= */
-
-.cover{
-
-background:#000;
-
-color:white;
-
-}
-
-
-
-/* =========================
-ロゴ
-========================= */
-
-.logo{
-
-width:160px;
-/* サイズ */
-
-margin-bottom:20px;
-
-filter:brightness(0) invert(1);
-/*
-黒ロゴを白ロゴに変換
-*/
-
-}
-
-
-
-/* =========================
-写真
-========================= */
-
-.photo{
-
-width:100%;
-
-border-radius:10px;
-/* 角丸 */
-
-margin-top:20px;
-
-}
-
-
-
-/* =========================
-サービスリスト
-========================= */
-
-ul{
-
-line-height:2;
-/* 行間 */
-
-margin-top:20px;
-
-}
-
-
-
-/* =========================
-ボタン
-========================= */
-
-.btn{
-
-margin-top:20px;
-
-padding:10px 20px;
-
-background:#007bff;
-
-color:white;
-
-text-decoration:none;
-
-border-radius:5px;
-
-}
-
-
-
-/* LINEボタン */
-
-.line{
-
-background:#06c755;
-
-}
-
-
-
-/* =========================
-ページ操作ボタン
-========================= */
-
-.controls{
-
-margin-top:20px;
-
-}
-
-
-
-.controls button{
-
-padding:10px 20px;
-
-font-size:18px;
-
-margin:5px;
-
-cursor:pointer;
-/* マウスを指マークにする */
-
-}
-
+/*  BGMコントロールのボタンを縦並びにする 
+    .bgm-controls {
+        flex-direction: column; /* ボタンを縦並びにする
+         gap: 10px; /* 縦の隙間を調整  
+    }  */
+
+    /*  pagetopアイコンの調整  
+    .pagetop {
+        right: 5px;  /* 右からの距離を少し狭める  
+         bottom: 60px; /* フッターとの距離を調整  
+    } */

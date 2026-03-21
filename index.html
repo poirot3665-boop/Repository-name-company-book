@@ -1,218 +1,130 @@
-<!-- ```html -->
 <!DOCTYPE html>
-<!-- HTML5を使うという宣言 -->
-
 <html lang="ja">
-<!-- 日本語ページであることを指定 -->
 
 <head>
-
+    <title>無人航空機（ドローン）の法規制について</title>
     <meta charset="UTF-8">
-    <!-- 日本語が文字化けしないようにする -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- スマホ画面に合わせて表示する設定 -->
-
-    <title>S-SYSTEM デジタル会社案内</title>
-    <!-- ブラウザのタブに表示されるタイトル -->
-
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <meta name="keywords" content="drone,ドローン,無人航空機,航空法, ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!---->
+    <!--リセットcss-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link href="index.css" rel="stylesheet" media="all">
-
-    <!-- style.cssというデザインファイルを読み込む -->
-
+    <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
 
-
-    <!-- =========================
-会社案内の本全体
-========================= -->
-
-    <div class="book-wrapper">
-        <!-- 本を中央に配置するための外枠 -->
-
-        <h1 class="title">
-            S-SYSTEM DIGITAL COMPANY BOOK
-        </h1>
-        <!-- 本のタイトル -->
-
-
-        <!-- =========================
-本の本体
-========================= -->
-
-        <div class="book">
-
-
-            <!-- =========================
-1枚目の紙
-========================= -->
-
-            <div class="paper" id="page1">
-                <!-- paper = 本の紙1枚 -->
-
-                <div class="front cover">
-                    <!-- front = 表面
-cover = 表紙デザイン -->
-
-                    <img src="img/logo.png" class="logo">
-                    <!-- 会社ロゴ -->
-
-                    <h2>S-SYSTEM</h2>
-
-                    <p>
-                        プロの清掃技術で<br>
-                        空間を再生する
-                    </p>
-
-                </div>
-
-
-                <div class="back">
-                    <!-- back = 紙の裏面 -->
-
-                    <h3>ABOUT US</h3>
-
-                    <p>代表者：佐々木 健二</p>
-
-                    <p>設立：2024年</p>
-
-                    <p>所在地：函館市港町3丁目4番22号</p>
-
-                    <p>
-                        TEL
-                        <a href="tel:09064451070">
-                            090-6445-1070
-                        </a>
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =========================
-2枚目の紙
-========================= -->
-
-            <div class="paper" id="page2">
-
-                <div class="front">
-
-                    <h3>SERVICE</h3>
-
-                    <ul>
-
-                        <li>ハウスクリーニング</li>
-
-                        <li>店舗清掃</li>
-
-                        <li>エアコン清掃</li>
-
-                        <li>退去清掃</li>
-
-                        <li>定期清掃</li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="back">
-
-                    <h3>MESSAGE</h3>
-
-                    <p>
-
-                        S-SYSTEMは<br><br>
-
-                        清掃を通して<br>
-
-                        お客様の空間を<br>
-
-                        より快適にすることを<br>
-
-                        使命としています。
-
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =========================
-3枚目の紙
-========================= -->
-
-            <div class="paper" id="page3">
-
-                <div class="front">
-
-                    <h3>WORKS</h3>
-
-                    <img src="img/clean1.jpg" class="photo">
-                    <!-- 清掃の作業写真 -->
-
-                    <p>
-                        店舗清掃事例
-                    </p>
-
-                </div>
-
-
-                <div class="back">
-
-                    <h3>CONTACT</h3>
-
-                    <p>
-
-                        お問い合わせは<br>
-                        お電話またはLINEで
-
-                    </p>
-
-                    <a href="tel:09064451070" class="btn">
-                        電話する
-                    </a>
-                    <!-- スマホなら押すと電話できる -->
-
-                    <a href="#" class="btn line">
-                        LINE問い合わせ
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =========================
-ページ操作ボタン
-========================= -->
-
-        <div class="controls">
-
-            <button onclick="prevPage()">◀</button>
-            <!-- 前のページに戻る -->
-
-            <button onclick="nextPage()">▶</button>
-            <!-- 次のページへ -->
-
-        </div>
-
+    <header id="header">
+        <h1>無人航空機（ドローン）の法規制について</h1>
+        <p>航空法における無人航空機の定義と飛行のルールを解説します。</p>
+    </header>
+
+    <nav>
+        <!-- ファイル内ハイパーリンク、<../>は１つ上の階層<../../>は２つ上の階層 -->
+        <ul class="menu">
+            <li><a href="../pilot-guidelines/pilot-guidelines.html">無人航空機の心得</a></li>
+            <li><a href="../other-regulation/other-regulation.html">その他関わる法令</a></li>
+            <li><a href="../restrited-airspace/restrited-airspace.html"><!-- 無人航空機の-->飛行の許可が必要となる空域(DID)</a></li>
+            <li><a href="../category/category.html">無人航空機のカテゴリーの分類</a></li>
+        </ul>
+    </nav>
+
+    <!-- BGMを操作する部分 --> <!-- <div>で、ボタンをまとめるbox-->
+    <div class="bgm-controls">
+        <!-- loop属性で、音楽が終わったら自動で繰り返えす -->
+        <audio id="myAudio" loop src="bgm/01 Where My Heart Will Take Me (Album Version).mp3"></audio>
+        <!-- BGMの再生ボタン -->
+        <button id="playButton">BGMを再生</button>
+        <!-- BGMの停止ボタン -->
+        <button id="pauseButton">BGMを停止</button>
+        <!-- <script></script> は、</footer>の下にある。-->
     </div>
 
 
-    <script src="index.js"></script>
-    <!-- JavaScript（ページめくり）を読み込む -->
+    <main>
+        <section id="definition"><!-- definition 意義-->
+            <h2>無人航空機とは？</h2>
+            <article>
+                <h3>無人航空機の定義</h3>
+                <p>航空法において、「無人航空機」とは、以下の3つの条件を満たすものを指します。</p>
+                <ol>
+                    <li>航空の用に供することができる飛行機、回転翼航空機、滑空機及び飛行船であって構造上人が乗る事ができないもの。</li>
+                    <li>遠隔操作又は自動操縦により飛行させる事ができるもの。</li>
+                    <li>重量が100グラム以上のもの。</li>
+                </ol>
+            </article>
+            <article>
+                <h3>無人航空機の登録</h3>
+                <p>重量が100グラム未満のものを除く全ての無人航空機は、原則として国の登録が必要です。</p>
+                <p>登録の有効期間は3年で、無人航空機を識別するための登録記号の表示と、一部の例外を除きリモートID機能を備えなければなりません。</p>
+            </article>
 
+            <!-- 航空法の画像 -->
+
+            <!-- 画像センターに 画像の大きさは、黄金比で縮小-->
+            <div class="flex-container">
+                <img src="img/drone.png" width="819" height="523" alt="航空法">
+            </div>
+            <!-- 画像が出ない時に飛ぶ、ハイパー -->
+            <!-- <p class="more"><a href="index-a/index-a.html">→こちらもどうぞ！</a></p> -->
+            <p class="more"><a href="../cube/cube.html">→こちらもどうぞ！</a></p>
+        </section>
+
+
+
+        <section id="rules">
+            <h2>飛行のルール（特定飛行）</h2>
+            <p>航空法において、無人航空機の飛行に当たって確保すべき安全は、航空機の航行の安全と、地上又は水上の人又は物件の安全です。</p>
+            <article>
+                <h3>規制対象となる飛行の空域</h3>
+                <style>
+                    ul {
+                        list-style-type: lower-alpha;
+                        /* a, b, c... */
+                    }
+                </style>
+                <ol>
+                    <li>航空機の航行の安全に影響を及ぼすおそれのある空域
+                        <ul>
+                            <li>空港等の周辺の上空の空域。</li>
+                            <li>緊急用務空域（消防、救助、警察業務その他の緊急用務を行うための航空機の飛行の安全を確保する必要がある空域）。</li>
+                            <li>地表又は水面から150メートル以上の高さの空域 。</li>
+                        </ul>
+                    </li>
+                    <li>人又は家屋の密集している地域の上空
+                        <style>
+                            ul {
+                                list-style-type: lower-alpha;
+                                /* a, b, c... */
+                            }
+                        </style>
+                        <ul>
+                            <li>国勢調査の結果を受け設定されている人口集中地区の上空。</li>
+                        </ul>
+                    </li>
+                </ol>
+            </article>
+            <article>
+                <h3>規制対象となる飛行の方法</h3>
+                <ol>
+                    <li>夜間飛行（日没後から日出まで。</li>
+                    <li>操縦者の目視外での飛行（目視外飛行。</li>
+                    <li>第三者又は第三者の物件との間の距離が30メートル未満での飛行。</li>
+                    <li>祭礼、縁日、展示会など多数の者の集合する催しが行われている場所の上空での飛行。</li>
+                    <li>爆発物など危険物の輸送。</li>
+                    <li>無人航空機からの物件の投下。</li>
+                </ol>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>無人航空機の飛行の安全に関する教則/令和７年２月１日第４版 参照</p> <!-- -->
+        <!-- topボタン --><!-- 上に飛ばすためのハイパーリンク -->
+        <p class="pagetop"><a href="#header">TOP</a></p>
+    </footer>
+
+    <script src="index.js" defer></script>
 </body>
 
 </html>
