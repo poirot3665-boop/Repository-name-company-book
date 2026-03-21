@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>無人航空機</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="drone,ドローン,無人航空機,武井の島展望台,憩いの丘公園">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!---->
+    <!-- リセットcss -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="cube.css" rel="stylesheet" media="all">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- 背景 -->
+    <section>
+        <div class="container">
+        </div>
+    </section>
+
+    <header id="header">
+        <!--  <h1>無人航空機の飛行形態の分類（カテゴリーⅠ～Ⅲ）</h1>
+        <p>飛行の禁止空域及び飛行の方法に関する無人航空機の飛行形態については、そのリスクに応じて
+            次に掲げるとおりに分類される。</p> -->
+    </header>
+
+    <main>
+
+        <!-- キューブの骨組みを作る -->
+        <div class="cube" id="flying-box">
+            <div class="cube-face front"><small>武井の島展望台</small></div>
+            <div class="cube-face back">憩いの丘公園</div>
+            <div class="cube-face right">標高５７ｍ</div>
+            <div class="cube-face left">景勝地</div>
+            <div class="cube-face top">函館市浜町</div>
+            <div class="cube-face bottom">公園駐車場有</div>
+        </div>
+
+        <script src="cube.js" defer></script>
+
+    </main>
+
+    <footer>
+        <p>2025.8.11（月）山の日<br>
+            DJI Air3にて空撮をする。予定で汐首の山で飛行等の練習をするはずだったが、
+            熊の出没も相まって立ち入り禁止措置が講じられていた。<br>
+            その為、景色が良いこの場所でドローンを墜落させたらお仕舞いの海上を飛行させた。</p>
+
+        <div class="googlemap">
+            <!--style="position: fixed; top: 0; right: 0; width: 300px; height: 250px; z-index: 1000;"-->
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5956.108486210941!2d141.02499856875602!3d41.71934834309775!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9e628e5ffb2899%3A0x81ae74526805655f!2z5oi45LqV5oap44GE44Gu5LiY5YWs5ZySIO-8iOatpuS6leOBruWztuWxleacm-WPsO-8iQ!5e0!3m2!1sja!2sus!4v1756209799598!5m2!1sja!2sus"
+                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div>
+                <video class="video" src="mp4/jdi_air3_1.mp4" controls></video>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

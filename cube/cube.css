@@ -1,0 +1,277 @@
+@charset "utf-8";
+
+/*画像の伸縮設定、レスポンシブ*/
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 基本的なページ全体の設定 */
+body {
+    font-family:
+        /*'Helvetica Neue',*/
+        Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* 背景スタイル  */
+.container {
+    /* 画像固定 */
+    position: fixed;
+    /* top,left:0 */
+    top: 0;
+    left: 0;
+    /* 横幅max */
+    width: 100%;
+    /* 高さmax */
+    height: 100%;
+    /* 背景画像 */
+    background-image: url(img/DJI_20250811140437_0002_D.jpg);
+    /* 全体的にフィットさせる */
+    background-size: cover;
+    /* 画像調整中央 必要だ*/
+    background-position: center;
+    /* 繰り返し表示を抑える */
+    background-repeat: no-repeat;
+    /* 他の要素の背面に設置するためのコード */
+    /* -1に設定すると、通常の要素(z-index 0の要素)よりも下に表示される。 */
+    z-index: -1;
+}
+
+/* 失敗　↓ */
+/* 背景画像は高さを持たないため、heightの指定が必要
+    height: 1280px;
+    /*相対パス（一階層下）
+    background-image: url(img/DJI_20250811140437_0002_D.jpg);
+    /* 繰り返し表示を抑える 
+    background-repeat: no-repeat;
+    /* 画像の表示調整 */
+/* background-position: bottom; */
+/* 画像のサイズの調整 */
+/* background-size: contain; */
+
+/* 3Dキューブとアニメーションのスタイル */
+#flying-box {
+    /* ページのコンテンツに影響を与えないように絶対位置に配置 */
+    position: absolute;
+    /* 子要素（6つの面）を3D空間に配置する。これがないと3Dに見えない。 */
+    transform-style: preserve-3d;
+    /* JavaScriptによるtransformの変化を3秒かけて滑らかに動かす。 */
+    transition: transform 3s ease-in-out;
+    /* キューブの初期サイズ（PC） */
+    width: 200px;
+    height: 200px;
+}
+
+.cube-face {
+    /* キューブの中心から相対的に位置を決める*/
+    position: absolute;
+    /* 面サイズ（PC版）*/
+    width: 200px;
+    height: 200px;
+    background: rgba(100, 100, 200, 0.1);
+    border: 1px solid #000;
+    /* 枠線 */
+    /*文字のサイズ */
+    font-size: 2rem;
+    color: white;
+    /* 文字色 */
+    text-align: center;
+    line-height: 200px;
+    /* 面の高さに合わせて文字を垂直中央に */
+}
+
+/* 各面を3D空間に配置（PC版の奥行き） */
+.front {
+    transform: translateZ(100px);
+}
+
+.back {
+    transform: rotateY(180deg) translateZ(100px);
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(100px);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+/* フッターのスタイル */
+/* 短文ならレスポンシブにえいきょうない。*/
+/* もし増えたら padding-bottom:5rem　→　8rem*/
+footer {
+    /* ページのどこにいても、ブラウザの表示領域の下に固定します */
+    position: fixed;
+    /* 画面の下端から0pxの位置に配置します */
+    bottom: 0;
+    /* 画面の左端から0pxの位置に配置します */
+    left: 0;
+    /* フッターの幅を画面いっぱいに広げます */
+    width: 100%;
+    /* その他の既存のスタイル */
+    text-align: center;
+    padding: 1.5rem;
+    /* 半透明 設定(0.5は50%の透明度) */
+    background-color: rgba(10, 10, 10, 0.5);
+    color: #ffffff;
+    border-radius: 8px;
+    /* margin-top は position: fixed と併用すると意味がなくなるため削除 */
+    /* margin-top: 3rem; */
+}
+
+footer p {
+    /* 余白をなくす */
+    margin: 0;
+    /* 文字サイズを小さくする */
+    font-size: 0.7rem;
+}
+
+/* bodyの調整 */
+body {
+    /* フッターがコンテンツに重ならないように、bodyの下部に余白を追加する */
+    /* フッターの高さ（padding 1.5rem + 1.5rem = 3rem と文字の高さ）よりも少し大きめに設定すると〇*/
+    padding-bottom: 5rem;
+    /* 例として5rem。フッターの高さに合わせて調整 */
+}
+
+/* stylesheetでは通用しないので、htmlに直接実装し、強制的に行う縮小 */
+/* Google Map */
+/*.map {
+     ページの右上に固定 */
+/*position: fixed;  画面に固定 */
+/*top: 0;           画面の上端に配置 */
+/*right: 0;        画面の右端に配置 */
+/*width: 300px;    幅を300ピクセルに縮小 */
+/*height: 250px;   高さを250ピクセルに縮小 */
+/*z-index: 1000;  }  他の要素より手前に表示 */
+
+
+/* .map iframe { */
+/*    width: 100%;      親要素の幅に合わせる */
+/*   height: 100%;   }  親要素の高さに合わせる */
+
+.googlemap {
+    transform: scale(0.5);
+    /* 50%に縮小 */
+    transform-origin: top right;
+    /* 右上を基準に縮小 */
+
+    /* ページの右上に固定  */
+    position: fixed;
+    /* 画面に固定 */
+    top: 0;
+    /*  画面の上端に配置 */
+    right: 0;
+    /*画面の右端に配置 */
+    width: 300px;
+    /* 幅を300ピクセルに縮小 */
+    height: 250px;
+    /* 高さを250ピクセルに縮小 */
+    z-index: 1000;
+    /*  他の要素より手前に表示 */
+/* ==>能くわからないが、この設定がうまく表示される。 */
+}
+
+.video {
+
+    /* 50%に縮小 */
+    /* transform: scale(0.5); */
+    /* 右上を基準に縮小 */
+    /* transform-origin: top right; */
+
+    /* ページの右上に固定  */
+    /* 画面に固定 */
+    /* position: fixed; */
+    /*  画面の上端に配置 */
+    top: 0;
+    /*画面の右端に配置 */
+    right: 0;
+    /* 幅を300ピクセルに縮小 */
+    width: 300px;
+    /* 高さを250ピクセルに縮小 */
+    /* height: 250px; */
+    /*  他の要素より手前に表示 */
+    z-index: 1000;
+
+
+}
+
+/* メディアクエリ/レスポンシブ（画面幅640px以下） */
+@media (max-width: 640px) {
+
+    /* キューブ全体のサイズを小さくする */
+    #flying-box {
+        width: 150px;
+        /* スマホ向けに縮小 */
+        height: 150px;
+    }
+
+    /* 各面のサイズもキューブに合わせて小さくする */
+    .cube-face {
+        width: 150px;
+        height: 150px;
+        font-size: 1.5rem;
+        /* 文字サイズも小さくする */
+        line-height: 150px;
+        /* 面の高さに合わせて文字を垂直中央に */
+    }
+
+    /* 各面の位置を再計算する（キューブのサイズ（立方体面積）の半分、150pxの半分で75pxに調整） */
+    .front {
+        transform: translateZ(75px);
+    }
+
+    .back {
+        transform: rotateY(180deg) translateZ(75px);
+    }
+
+    .right {
+        transform: rotateY(90deg) translateZ(75px);
+    }
+
+    .left {
+        transform: rotateY(-90deg) translateZ(75px);
+    }
+
+    .top {
+        transform: rotateX(90deg) translateZ(75px);
+    }
+
+    .bottom {
+        transform: rotateX(-90deg) translateZ(75px);
+    }
+}
+
+/* マップのレスポンシブ */
+/* スマートフォン表示時（画面幅が640px以下の場合）のスタイル */
+/*.googlemap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* 元サイズを基準にする */
+/* width: 600px;   iframe の元の幅 */
+/* height: 450px;  iframe の元の高さ */
+
+/* 縮小の基準位置を右上に */
+/* transform-origin: top right; */
+
+/* 1920px 幅を基準に縮小率を計算 */
+/* transform: scale(calc(100vw / 1920)); */
+/* } */
+/* 多分、いらない勝手に作動する */

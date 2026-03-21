@@ -1,0 +1,390 @@
+@charset "utf-8";
+
+/*画像の伸縮設定、レスポンシブ*/
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* 基本的なページ全体設定 */
+
+body {
+    /* フォントの種類：Helvetica Neue, Arial, なければシンプルなフォント */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* 行の高さ：文字の1.6倍にして読みやすくする */
+    line-height: 1.6;
+    /* ページの上下左右の余白をなくす */
+    margin: 0;
+    padding: 0;
+    /* 背景色 */
+    background-color: #f0f2f5;
+    /* 文字色 */
+    color: #333;
+}
+
+/* ヘッダーのスタイル */
+
+header {
+    /* 背景色 */
+    background-color: #0056b3;
+    /* 文字色*/
+    color: #ffffff;
+    /* 内側の余白：上下に2rem、左右に1rem */
+    padding: 2rem 1rem;
+    /* 文字を中央揃えにする */
+    text-align: center;
+    /* 影をつけて立体感を出す */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 角を丸くする (左上と右下のみ) */
+    border-radius: 50px 0;
+}
+
+header h1 {
+    /* 下側に少し余白を空ける */
+    margin: 0 0 0.5rem 0;
+    /* 文字のサイズを大きくする */
+    font-size: 2.5rem;
+}
+
+header p {
+    /* 余白をなくす */
+    margin: 0;
+    /* 文字サイズを設定 */
+    font-size: 1.1rem;
+    /* 少し透明にして、重くなりすぎないようにする */
+    opacity: 0.9;
+}
+
+/* ナビ */
+.menu {
+    /* メニュー項目が横並びに */
+    display: flex;
+    /*※コメントが上下不揃いの時、子要素（li）を垂直方向に中央揃えにする */
+    align-items: center;
+
+    /* 画面幅が狭いときに自動で折り返す */
+    flex-wrap: wrap;
+    /* メニュー全体を中央に配置する */
+    justify-content: center;
+    padding: 0;
+    /* 上下の余白と中央揃え */
+    margin: 20px auto;
+    /* リストの黒点を消す */
+    list-style: none;
+}
+
+
+.menu li {
+    margin: 10px;
+    /*list-style: none;
+    /* border: 1px solid #f00;  だみー  
+    display: inline-block;
+    width: 300px;
+    margin: 20px 10px 0;*/
+    /* box-sizing: border-box; */
+    /* margin: auto; */
+    /* 使うPCによって付加する */
+    /* margin-top: 20px; */
+}
+
+.menu a {
+    /* 内側の余白 */
+    display: block;
+    /* 外側の余白 */
+    padding: 10px;
+    /* margin: 5% 0;  */
+    background: #007bff;
+    border-radius: 50px;
+    color: #fff;
+    /* 下線を消す/装飾を削除 */
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    /* アニメーションを滑らかにする */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* マウス乗った時*/
+.menu a:hover {
+    background: orange;
+    transform: translateY(-5px)
+}
+
+
+/* メインコンテンツのスタイル  /レスポンシブ*/
+
+main {
+    /* widthの幅計算対象をborder-boxに変更 */
+    box-sizing: border-box;
+    /* コンテンツの最大幅を960pxにする */
+    max-width: 960px;
+    /* 上下に20px、左右は自動で余白を作り、中央に配置する */
+    margin: 20px auto;
+    /* 内側の余白 */
+    /* padding: 1.5rem; */
+    /*親の要素に合わせて指定比率で伸縮*/
+    padding: 4% 8%;
+    /* 背景色を白色にする */
+    background-color: #ffffff;
+    /* 角を少し丸くする */
+    border-radius: 8px;
+    /* 影をつけて立体感を出す */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*画像の幅*/
+/* id="category" を持つ要素の中にあるすべての <img> タグ（画像）の幅を100%に設定する */
+#category img {
+    width: 100%;
+}
+
+section {
+    /* 各セクションの下に余白を作る */
+    margin-bottom: 3rem;
+}
+
+section h2 {
+    /* 見出しの色を青色にする */
+    color: red;
+    /* 下に細いグレーの線を引く */
+    border-bottom: 3px solid #e0e0e0;
+    /* 見出しと下線の間に余白を作る */
+    padding-bottom: 0.5rem;
+    /* 文字サイズを大きくする */
+    font-size: 2rem;
+    /* 上の余白をなくす */
+    margin-top: 0;
+}
+
+article {
+    /* 記事の下に余白を作る */
+    margin-bottom: 2rem;
+    /* 内側の余白 */
+    padding: 1.5rem;
+    /* 各article背景色を薄いグレーにする */
+    background-color: #f9f9f9;
+    /* 左側に青い太い線を引く */
+    border-left: 5px solid #0056b3;
+    /* 角を丸くする */
+    border-radius: 4px;
+}
+
+/* 画像をセンターに*/
+.flex-container {
+    display: flex;
+    /* 親要素をFlexコンテナにする */
+    flex-direction: column;
+    /* 子要素を縦に並べる */
+    justify-content: center;
+    /* 子要素を水平方向の中央に配置 */
+    align-items: center;
+    /* 子要素を垂直方向の中央に配置 */
+    height: 500px;
+    /* コンテンツを配置する高さを設定 */
+}
+
+/* 上に1行分の余白を追加 */
+.more {
+    text-align: right;
+    /* 上の行に-3行分下がる */
+    margin-top: -3rem;
+}
+
+.more a {
+    color: green;
+}
+
+/* カーソルが乗ったときの色 */
+.more a:hover {
+    color: orange;
+}
+
+/* クリックしたときの色 */
+.more a:active {
+    color: red;
+    /* #003366;#0056b3  */
+}
+
+article h3 {
+    /* 記事内の見出しの色を青色にする */
+    color: #007bff;
+    /* 文字サイズを設定 */
+    font-size: 1.5rem;
+    /* 上の余白をなくす */
+    margin-top: 0;
+}
+
+p {
+    /* 段落の下に余白を作る */
+    margin: 0 0 1rem 0;
+    /* １文字下げる */
+    padding-left: 1em;
+}
+
+/* リストのスタイル */
+
+ol,
+ul {
+    /* リスト全体の余白をなくす */
+    margin: 0;
+    /* リストの左側の余白 */
+    padding-left: 25px;
+}
+
+ol li,
+ul li {
+    /* リスト項目の下に余白を作る */
+    margin-bottom: 0.8rem;
+}
+
+/* 定義リストのスタイル  */
+
+dl {
+    /* 定義リストの下に余白を作る */
+    margin-bottom: 1.5rem;
+}
+
+dt {
+    /* 用語を太字にする */
+    font-weight: bold;
+    /* 用語の色を青色にする */
+    color: #0056b1;
+    /* 用語の文字サイズを設定 */
+    font-size: 1.2rem;
+    /* 用語の上に余白を作る */
+    margin-top: 1.5rem;
+}
+
+dd {
+    /* 説明文の左側に余白を作る */
+    margin-left: 1.5rem;
+    /* 説明文の下に余白を作る */
+    margin-bottom: 1rem;
+}
+
+/* フッターのスタイル */
+
+footer {
+    /* 文字を中央揃えにする */
+    text-align: center;
+    /* 内側の余白 */
+    padding: 1.5rem;
+    /* 背景色を濃いグレーにする */
+    background-color: #333;
+    /* 文字色を白色にする */
+    color: #ffffff;
+    /* 上に余白を作る */
+    margin-top: 3rem;
+    border-radius: 5px;
+}
+
+footer p {
+    /* 余白をなくす */
+    margin: 0;
+    /* 文字サイズを小さくする */
+    font-size: 0.7rem;
+}
+
+/*pagetopアイコン*/
+.pagetop {
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    right: 10px;
+    bottom: 70px;
+}
+
+.pagetop a {
+    display: block;
+    width: 45px;
+    height: 45px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+}
+
+.pagetop a:hover {
+    background: rgba(255, 192, 9, 1);
+    color: #333;
+}
+
+.pagetop a::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+    transform: rotate(-45deg);
+}
+
+/* BGMコントロール部分*/
+.bgm-controls {
+    margin-top: 10px;
+    /*上に余白 */
+    padding: 10px;
+    /*内側四方に余白*/
+    /* background-color: #e0f2f7; */
+    /* 背景色 */
+    text-align: center;
+    /* センターに持っていく */
+    /* 角を丸*/
+    /* border-radius: 5px; */
+    /* ボックスに影つける */
+    /* box-shadow: 0 0 10px #fff; */
+}
+
+/* BGMボタン  bgm-controlsの中の全てのボタンに適用 */
+.bgm-controls button {
+    /* 色相環の三原色　アクセント赤、ベース青、ボタン緑 */
+    background-color: MediumSeaGreen;
+    /* 文字白色 */
+    color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    /* 内側の余白 */
+    padding: 10px 10px;
+    /* 枠線を消す */
+    border: none;
+    /* 角を丸 */
+    border-radius: 10px;
+    /* マウスカーソル */
+    cursor: pointer;
+    /* ２つのボタンの間に隙間を作る */
+    margin: 0 20px;
+    /* 変化に2秒かける対象をbackground-colorとbox-shadowに指定 */
+    transition: background-color 2s, box-shadow 2s;
+}
+
+.bgm-controls button:hover {
+    /* マウスをボタンの上に置いたとき少し濃い緑色 */
+    /* background-color: SeaGreen; */
+    /* マウスをボタンの上に置いたとき真ん中白くなる */
+    background: radial-gradient(closest-side, #86fea0, MediumSeaGreen);
+    /* box-shadowは2秒かけてゆっくりと表示される　↑が効いている */
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
+}
+
+
+/* メディアクエリ・レスポンシブ */
+@media screen and (max-width:640px) {
+    /* ... 既存のヘッダーやメインコンテンツの調整 ... */
+
+    /* ナビゲーションメニュー全体を縦並びにする */
+    .menu {
+        flex-direction: column; /* メニュー項目を縦に並べる */
+        gap: 10px; /* 項目間の隙間を調整 */
+        align-items: center; /* 縦並びの項目を中央揃えにする */
+    }
+    /* 各ナビゲーション項目（li）の調整 */
+    .menu li {
+        display: block; /* ブロック要素にして独立させる */
+        width: 90%; /* スマホでは幅を広げてタップしやすくする */
+        margin: 0 auto 10px; /* 上下の余白と中央揃え */
+    }
+}
