@@ -1,14 +1,28 @@
-// 役割：クリックされた瞬間に「アニメーション開始！」という合図を送ります
-// 1. 画面上の「雲のレイヤー（id="entranceLayer"）」を探して、変数に入れます
-const entranceLayer = document.getElementById('entranceLayer');
+// =========================
+// ページ読み込み時の演出
+// =========================
+window.onload = () => {
 
-// 2. そのレイヤーがクリック（またはタップ）された時に実行する命令を書きます
-entranceLayer.addEventListener('click', function () {
+  const hero = document.querySelector(".hero");
 
-    // 3. CSSで作成した「is-open」というクラス（印）をレイヤーに追加します
-    // これによって、CSSに書いた「拡大・透明・ボカシ」の動きがスタートします
-    this.classList.add('is-open');
+  // ▼ 少し待って「雲の中」感を出す
+  setTimeout(() => {
+    hero.classList.add("open"); // 雲が消える
+  }, 1000);
 
-    // 確認用：ブラウザのコンソールにメッセージを出します
-    console.log("シンプソンズ風のオープニングを開始しました！");
-});
+  // ▼ ロゴとボタン出現
+  setTimeout(() => {
+    hero.classList.add("show");
+  }, 1800);
+
+};
+
+// =========================
+// ボタン押下時
+// =========================
+function enterSite() {
+
+  // ▼ 本番では別ページへ遷移
+  window.location.href = "main.html";
+
+}

@@ -1,34 +1,38 @@
-<!-- 役割：画面の「部品」を並べる設計図です。 -->
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S-SYSTEM | Entrance</title>
+  <title>S-SYSTEM</title>
 
-  <link rel="index.css" href="style.css">
+  <!-- ▼ CSS読み込み -->
+    <link href="index.css" rel="stylesheet" media="all">
 </head>
+<body>
 
-<body class="simpsons-intro">
+<!-- ▼ 全体ラッパー -->
+<div class="hero">
 
-  <div class="sky-container">
+  <!-- ▼ 空（背景） -->
+  <div class="sky"></div>
 
-    <div class="logo-area">
-      <img src="S-system.png"  width="512" height="512" alt="S-SYSTEM" class="main-logo">
-      <p class="tagline">PROFESSIONAL CLEANING SYSTEM</p>
-    </div>
+  <!-- ▼ 横に流れる雲（奥レイヤー） -->
+  <div class="clouds"></div>
 
-    <div class="cloud-overlay" id="entranceLayer">
-      <div class="instruction-box">
-        <strong>TAP TO ENTER</strong>
-        <span>プロの清掃技術 S-SYSTEM</span>
-      </div>
-    </div>
+  <!-- ▼ 雲マスク（リアル版：最初はこれで覆う） -->
+  <div class="cloud-mask"></div>
 
+  <!-- ▼ 中央コンテンツ -->
+  <div class="center">
+    <h1 class="logo">S-SYSTEM</h1>
+
+    <button class="btn" onclick="enterSite()">
+      タップして入る
+    </button>
   </div>
 
-  <script src="index.js"></script>
-</body>
+</div>
 
+<!-- ▼ JS読み込み -->
+<script src="index.js"></script>
+</body>
 </html>
