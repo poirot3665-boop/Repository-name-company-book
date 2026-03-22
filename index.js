@@ -1,21 +1,14 @@
-//const:再代入できない宣言
-// IDが 'playButton' の<button>タグ（再生ボタン）を見つけて、`playButton`という箱に入れる。
- // IDが 'pauseButton' の<button>タグ（停止ボタン）を見つけて、`pauseButton`という箱に入れる。      
-const myAudio = document.getElementById('myAudio');
-const playButton = document.getElementById('playButton'); 
-const pauseButton = document.getElementById('pauseButton'); 
+// 役割：クリックされた瞬間に「アニメーション開始！」という合図を送ります
+// 1. 画面上の「雲のレイヤー（id="entranceLayer"）」を探して、変数に入れます
+const entranceLayer = document.getElementById('entranceLayer');
 
-// BGM再生ボタンがクリックされた時の動きを設定する
-// `addEventListener('click', ...)` は、「このボタンがクリックされたら、中に書かれたことを実行して」という命令。
-playButton.addEventListener('click', () => {
-    myAudio.play(); // BGMの再生を開始。
-// 開発者向けの「コンソール」にメッセージを表示して、ユーザーの画面には表示されない。
-    console.log("BGMを再生しました。"); 
-});
+// 2. そのレイヤーがクリック（またはタップ）された時に実行する命令を書きます
+entranceLayer.addEventListener('click', function () {
 
-// BGM停止ボタンがクリックされた時の動きを設定する
-pauseButton.addEventListener('click', () => {
-    myAudio.pause(); // 一時停止します。
-    // 開発者向けの「コンソール」にメッセージを表示。
-    console.log("BGMを停止しました。"); 
+    // 3. CSSで作成した「is-open」というクラス（印）をレイヤーに追加します
+    // これによって、CSSに書いた「拡大・透明・ボカシ」の動きがスタートします
+    this.classList.add('is-open');
+
+    // 確認用：ブラウザのコンソールにメッセージを出します
+    console.log("シンプソンズ風のオープニングを開始しました！");
 });
