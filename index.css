@@ -1,133 +1,608 @@
-/* =========================
- 初期化（ズレ防止）
-========================= */
+/* =========================================
+   1. 色や共通設定
+   よく使う色や時間をまとめて管理します
+========================================= */
+:root {
+  /* 背景の空色 */
+  --sky-top: #65c7ff;
+  --sky-mid: #bfeaff;
+  --sky-bottom: #f8fdff;
+
+  /* イントロ画面の文字色 */
+  /* S-systemのところ */
+  --text-main: #111;
+  /* #ffffff */
+  --text-sub: #4e454a;
+  /*rgba(45, 110, 147, 0.88); */
+  /*rgba(255, 255, 255, 0.94) */
+
+  /* 雲の中央に表示する案内ボックスの色 */
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  /* top to enterの文字 */
+  --panel-text: #2d6e93;
+    /* --panel-text: red; */
+
+  /**/
+
+  /* 本画面の文字色 */
+  --main-text: #234;
+  --main-subtext: rgba(35, 52, 68, 0.85);
+  /* --main-subtext: red; */
+
+
+  /* 影 */
+  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.10);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+  /* 雲が消える時間 */
+  --fade-time: 4.5s;
+}
+
+/* すべての要素に共通で適用する設定です */
 * {
+  /* padding や border を含めてサイズ計算するので、レイアウトが崩れにくくなります */
+  box-sizing: border-box;
+
+  /* スマホでタップしたときの青いハイライトを目立たなくします */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* html と body の初期余白を消します */
+html,
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
 }
 
-/* =========================
- 全体
-========================= */
-.hero {
+/* 画面の高さを最低でも1画面分にします */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* =========================================
+   2. イントロ画面
+========================================= */
+body.intro-page {
+  /* 空っぽい背景グラデーション */
+  background: linear-gradient(180deg,
+      var(--sky-top) 0%,
+      var(--sky-mid) 46%,
+      var(--sky-bottom) 100%);
+
+  /* 雲のはみ出しでスクロールバーが出ないようにする */
+  overflow: hidden;
+}
+
+.page {
+  /* 中の絶対配置要素の基準になります */
   position: relative;
+
   width: 100%;
-  height: 100vh;
-  overflow: hidden; /* はみ出し防止 */
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  /* 中身を中央に配置 */
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+
+  /* 重なり順の制御を整理しやすくします */
+  isolation: isolate;
+
+  /* ノッチ付きスマホでも文字が端に寄りすぎないように余白を確保 */
+  padding:
+    max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
 }
 
-/* =========================
- 空（シンプソンズ風カラー）
-========================= */
-.sky {
+/* 背景の柔らかい光の表現です */
+.sky-glow {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #87CEEB;
-}
+  inset: 0;
+  /* top/right/bottom/left を全部0にする省略形 */
+  z-index: 0;
 
-/* =========================
- 横に流れる雲（重要）
-========================= */
-.clouds {
-  position: absolute;
-  width: 200%; /* ←ループ用に広げる */
-  height: 100%;
-
-  /* ▼ 雲画像（横に繋がるPNGを使用） */
-  background: url("images/clouds.png") repeat-x;
-
-  animation: cloudMove 40s linear infinite;
-}
-
-/* ▼ 横スクロール */
-@keyframes cloudMove {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* =========================
- ☁️ 雲マスク（リアル版：核心）
-========================= */
-.cloud-mask {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
-
-  z-index: 8;
-
-  /* ▼ 複数の円グラデーションで雲を再現 */
+  /*
+    radial-gradient は円形のグラデーションです
+    これを複数重ねて、空にふんわりした光があるように見せています
+  */
   background:
-    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.95) 0%, transparent 60%),
-    radial-gradient(circle at 60% 50%, rgba(255,255,255,0.9) 0%, transparent 65%),
-    radial-gradient(circle at 50% 30%, rgba(255,255,255,0.85) 0%, transparent 70%),
-    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.9) 0%, transparent 65%),
-    radial-gradient(circle at 40% 70%, rgba(255,255,255,0.85) 0%, transparent 70%);
+    radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.32) 0 8%, transparent 9%),
+    radial-gradient(circle at 80% 25%, rgba(255, 255, 255, 0.27) 0 11%, transparent 12%),
+    radial-gradient(circle at 60% 75%, rgba(255, 255, 255, 0.18) 0 13%, transparent 14%);
 
-  /* ▼ ぼかしで雲っぽくする（超重要） */
-  filter: blur(20px);
-
-  transition: 2.5s ease;
+  /* 少しだけ動かして静止感を減らしています */
+  animation: skyFloat 8s ease-in-out infinite alternate;
 }
 
-/* ▼ 雲の中で微妙に動く（リアル感UP） */
-@keyframes cloudFloat {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(20px); }
-}
+/* 中央のロゴと説明文を入れる箱 */
+.content {
+  position: relative;
+  z-index: 1;
+  /* sky-glow より前に表示 */
 
-.cloud-mask {
-  animation: cloudFloat 8s ease-in-out infinite alternate;
-}
-
-/* ▼ フェードアウト＋拡大（雲から抜ける演出） */
-.open .cloud-mask {
-  opacity: 0;
-  transform: scale(1.3);
-}
-
-/* =========================
- 中央（ロゴ）
-========================= */
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: min(92vw, 1000px);
+  padding: clamp(20px, 4vw, 40px);
   text-align: center;
-  z-index: 10;
 }
 
-/* ▼ ロゴ */
+/* =========================================
+   3. ロゴ
+========================================= */
 .logo {
-  font-size: 70px;
-  color: #1e5c88;
+  margin: 0 0 clamp(12px, 2vw, 18px);
+  color: var(--text-main);
 
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 1.5s;
+  /*
+    clamp(最小, 可変, 最大)
+    画面幅に応じて文字サイズが変わるが、
+    小さくなりすぎ・大きくなりすぎを防げます
+  */
+  font-size: clamp(2.3rem, 8vw, 5.4rem);
+
+  line-height: 1;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.16);
 }
 
-/* ▼ ボタン */
-.btn {
-  margin-top: 20px;
-  padding: 15px 40px;
-  border-radius: 30px;
-  border: none;
-  background: #4fa3cc;
-  color: white;
+/* 最初の S だけ大きくする部分 */
+.logo-first {
+  display: inline-block;
+  font-size: 1.45em;
+  /* 親文字サイズの1.45倍 */
+  line-height: 0.8;
+  font-weight: 800;
+
+  /* 少しだけ位置を下げて見た目のバランスを整える */
+  transform: translateY(0.06em);
+
+  margin-right: 0.02em;
+}
+
+/* ロゴの下にある補助説明 */
+.lead-text {
+  margin: 0;
+  color: var(--text-sub);
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  line-height: 1.75;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+}
+
+/* =========================================
+   4. 雲のオーバーレイ
+   画面の上に全面表示する雲レイヤーです
+========================================= */
+.cloud-overlay {
+  position: fixed;
+  inset: 0;
+  /* 画面全体を覆う */
+  z-index: 10;
   cursor: pointer;
+  overflow: hidden;
 
-  opacity: 0;
-  transition: 1.5s;
+  /* うっすら白い膜をかける */
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.06));
+
+  /*
+    JavaScript で fade-out クラスが付いたとき、
+    opacity / transform / filter がなめらかに変化します
+  */
+  transition:
+    opacity var(--fade-time) ease,
+    transform var(--fade-time) ease,
+    filter var(--fade-time) ease;
+
+  will-change: opacity, transform, filter;
 }
 
-/* ▼ ロゴとボタン出現 */
-.show .logo,
-.show .btn {
-  opacity: 1;
-  transform: translateY(0);
+/*
+  ::before と ::after は「HTMLに書いていない追加の見た目」を作る仕組みです
+  今回はこの2つで雲の粒を重ねています
+*/
+.cloud-overlay::before,
+.cloud-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background-repeat: no-repeat;
+
+  /* ぼかして雲っぽく見せる */
+  filter: blur(clamp(14px, 2vw, 22px));
+  transform: translateZ(0);
+}
+
+/* 手前側の濃い雲 */
+.cloud-overlay::before {
+  background-image:
+    radial-gradient(circle at 10% 30%, rgba(255, 255, 255, 0.96) 0 7%, transparent 8%),
+    radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.98) 0 9%, transparent 10%),
+    radial-gradient(circle at 28% 32%, rgba(255, 255, 255, 0.96) 0 8%, transparent 9%),
+    radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+    radial-gradient(circle at 73% 20%, rgba(255, 255, 255, 0.98) 0 10%, transparent 11%),
+    radial-gradient(circle at 84% 26%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+    radial-gradient(circle at 26% 72%, rgba(255, 255, 255, 0.92) 0 9%, transparent 10%),
+    radial-gradient(circle at 40% 68%, rgba(255, 255, 255, 0.97) 0 11%, transparent 12%),
+    radial-gradient(circle at 55% 72%, rgba(255, 255, 255, 0.94) 0 9%, transparent 10%),
+    radial-gradient(circle at 72% 78%, rgba(255, 255, 255, 0.92) 0 8%, transparent 9%),
+    radial-gradient(circle at 82% 73%, rgba(255, 255, 255, 0.96) 0 10%, transparent 11%);
+  opacity: 0.98;
+
+  /* ゆっくり雲を漂わせる */
+  animation: cloudDriftA 15s ease-in-out infinite alternate;
+}
+
+/* 奥側の薄い雲 */
+.cloud-overlay::after {
+  background-image:
+    radial-gradient(circle at 14% 58%, rgba(255, 255, 255, 0.75) 0 6%, transparent 7%),
+    radial-gradient(circle at 24% 56%, rgba(255, 255, 255, 0.76) 0 8%, transparent 9%),
+    radial-gradient(circle at 48% 18%, rgba(255, 255, 255, 0.64) 0 7%, transparent 8%),
+    radial-gradient(circle at 70% 56%, rgba(255, 255, 255, 0.72) 0 7%, transparent 8%),
+    radial-gradient(circle at 82% 62%, rgba(255, 255, 255, 0.78) 0 8%, transparent 9%);
+  opacity: 0.82;
+  animation: cloudDriftB 18s linear infinite;
+}
+
+/* 雲の中央に置く案内ボックス */
+.cloud-copy {
+  position: absolute;
+  left: 50%;
+  /*左右50％*/
+  top: 78%;
+  /* 上から67％*/
+  z-index: 12;
+  /* ロゴや雲よりもさらに手前にパネルを表示*/
+
+  /* 中央寄せ */
+  transform: translate(-50%, -50%);
+
+  width: min(88vw, 420px);
+  padding: clamp(14px, 3vw, 20px) clamp(18px, 4vw, 28px);
+
+  border-radius: 28px;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+
+  /* 半透明ボックスの背景を少しぼかす */
+  backdrop-filter: blur(10px);
+
+  transition:
+    opacity var(--fade-time) ease,
+    transform var(--fade-time) ease;
+
+  user-select: none;
+}
+
+.cloud-copy strong {
+  display: block;
+  font-size: clamp(1rem, 3.8vw, 1.35rem);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+
+.cloud-copy span {
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(0.82rem, 2.9vw, 0.98rem);
+  line-height: 1.6;
+  /* 佐々木健二の所 */
+  /* color: rgba(45, 110, 147, 0.88); */
+  color: red;
+
+}
+
+/*
+  JavaScript で fade-out クラスが付いたときの見た目です
+  雲を透明にし、少し拡大し、ぼかして「ふわっと消える」ように見せます
+*/
+.cloud-overlay.fade-out {
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(18px);
+
+  /* 消えている途中の再クリックを防ぐ */
+  pointer-events: none;
+}
+
+/* 中央の案内ボックスも一緒に消す */
+.cloud-overlay.fade-out .cloud-copy {
+  opacity: 0;
+  transform: translate(-50%, -52%) scale(0.98);
+}
+
+/* =========================================
+   5. 本画面
+========================================= */
+/* body.main-page {
+  display: grid;
+  place-items: center;
+
+  padding:
+    max(20px, env(safe-area-inset-top))
+    max(16px, env(safe-area-inset-right))
+    max(20px, env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
+
+  background: linear-gradient(180deg, #ffffff 0%, #eefaff 100%);
+  color: var(--main-text);
+} */
+
+/* 試作 */
+
+body.main-page {
+  background: linear-gradient(180deg, var(--sky-mid), #fff);
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* 本画面の中央ボックス */
+/* .main-container {
+  width: min(92vw, 920px);
+  text-align: center;
+  padding: clamp(24px, 5vw, 48px);
+  background: rgba(255, 255, 255, 0.80);
+  border-radius: 24px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(6px);
+}
+
+*/
+
+/* 試作  スタイリッシュな感じ*/
+/* .main-container {
+  width: min(92vw, 600px); background: rgba(255, 255, 255, 0.85);
+  padding: 40px 20px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  backdrop-filter: blur(8px); text-align: center;
+}
+ */
+
+/* --- 本画面の中央ボックス（ここを修正します） --- */
+.main-container {
+  /* width: min(92vw, 600px); */
+  width: min(92vw, 920px);
+  padding: 40px 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+
+  /* ▼▼▼ ここから背景ロゴの設定 ▼▼▼ */
+
+  position: relative;
+  /* 子要素（ロゴ）の基準にします */
+  background-color: rgba(255, 255, 255, 0.85);
+  /* ベースの白。透明度はお好みで */
+  backdrop-filter: blur(8px);
+  /* すりガラス効果 */
+
+  /* ::before という疑似要素を使って、
+       白い背景と文字の間にロゴを差し込みます。
+    */
+  isolation: isolate;
+  /* 文字がロゴの後ろに隠れないようにするおまじない */
+}
+
+.main-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* ボックス全体に広げる */
+  z-index: -1;
+  /* 文字よりも奥に配置 */
+
+  /* 【超重要】鈴木さんのロゴ画像を指定します */
+  /* ※画像ファイル名が S-system.png であることを確認してください */
+  background-image: url('img/S-system.png');
+
+  /* ロゴを真ん中に1つだけ置く設定 */
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  /* ロゴのサイズ（ボックス幅の70%に設定） */
+  background-size: 70% auto;
+
+  /* 【ここがポイント】ロゴを半透明にします。
+       文字が読みやすいよう、0.06（6%）という超薄い設定にしています。
+       ロゴの色に合わせて 0.05〜0.15 くらいで調整してください。
+    */
+  opacity: 0.15;
+}
+
+/* ▲▲▲ ここまで背景ロゴの設定 ▲▲▲ */
+
+
+/* 本画面用ロゴ */
+.main-logo {
+  margin-bottom: 18px;
+  color: #111;
+  /*#2d6e93 */
+  font-size: clamp(1.8rem, 6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+/* */
+
+/* 試作 */
+
+/*.main-logo {
+  color: #2d6e93;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+}*/
+
+.main-logo-first {
+  font-size: 1.45em;
+  font-weight: 800;
+  display: inline-block;
+}
+
+/* 本画面でも最初の S を大きくする */
+.main-logo-first {
+  display: inline-block;
+  font-size: 1.45em;
+  font-weight: 800;
+  transform: translateY(0.06em);
+  margin-right: 0.02em;
+}
+
+.main-container h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  line-height: 1.2;
+}
+
+.main-container p {
+  margin: 0;
+  color: var(--main-subtext);
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  line-height: 1.8;
+}
+
+/* 会社情報の表デザイン */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  text-align: left;
+  /* 【ここを追加】表全体の文字サイズを少し大きくします（例: 1.1倍） */
+  font-size: 1.1rem;
+}
+
+/* --- 左側（「名称」など）の見出しの設定 --- */
+.profile-table th {
+  width: 80px;
+  color: #1e5a7b;
+  /*#2d6e93; から変更,少しだけ濃い青*/
+  /* 【ここを追加】見出しの文字を太くして、はっきりさせます */
+  font-weight: 700;
+  padding: 15px 5px;
+  /* 上下余白を少し広げました */
+  border-bottom: 1px solid #eefaff;
+}
+
+/* --- 右側（「S-system」など）の実データの設定 --- */
+.profile-table td {
+  padding: 15px 5px;
+  /* 上下余白を少し広げました */
+  color: #000;
+  /* #444;から#000にして濃くする */
+  /* 【お好みで】データも少し太くしたい場合は追加 */
+  font-weight: 500;
+  /* */
+  border-bottom: 1px solid #eefaff;
+  line-height: 1.6;
+}
+
+.contact-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 30px;
+  background: #4da6ff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(77, 166, 255, 0.3);
+}
+
+/* =========================================
+   6. アニメーション定義
+========================================= */
+
+/* 雲の動き1 */
+@keyframes cloudDriftA {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(1.6%, -1%, 0) scale(1.03);
+  }
+}
+
+/* 雲の動き2 */
+@keyframes cloudDriftB {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-1.2%, 1%, 0) scale(1.02);
+  }
+
+  100% {
+    transform: translate3d(1.2%, -1%, 0) scale(1);
+  }
+}
+
+/* 背景の光のゆっくりした動き */
+@keyframes skyFloat {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+
+  100% {
+    transform: scale(1.03) translateY(-6px);
+  }
+}
+
+/* =========================================
+   7. レスポンシブ対応
+   画面幅が小さいときの微調整です
+========================================= */
+@media (max-width: 768px) {
+  .content {
+    width: min(94vw, 640px);
+    padding: 24px 10px;
+  }
+
+  .cloud-copy {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* 小さいスマホでは強制改行を消して自然な折り返しにする */
+  .lead-text br,
+  .main-container p br {
+    display: none;
+  }
+
+  .cloud-copy {
+    width: min(90vw, 360px);
+    padding: 14px 16px;
+  }
+}
+
+/*
+  動きが苦手な人向けの配慮です
+  OS側で「アニメーションを減らしたい」が設定されている場合、
+  動きを弱くします
+*/
+@media (prefers-reduced-motion: reduce) {
+
+  .sky-glow,
+  .cloud-overlay::before,
+  .cloud-overlay::after {
+    animation: none;
+  }
+
+  .cloud-overlay,
+  .cloud-copy {
+    transition-duration: 0.5s;
+  }
 }
