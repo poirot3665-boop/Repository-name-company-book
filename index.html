@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- 文字コードの指定。日本語を正しく表示するために必要です -->
+  <meta charset="UTF-8">
+  <meta name="keywords" content="S-system、函館、清掃、ハウスクリーニング、二等無人航空機操縦士、ドローン,drone, ">
+  <!--
+    スマホで正しい横幅・拡大率で表示するための設定です
+    width=device-width : 端末の幅に合わせる
+    initial-scale=1.0 : 初期の拡大率を100%にする
+    viewport-fit=cover : ノッチ付きスマホでも画面いっぱいに使いやすくする
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ブラウザのタブに表示されるタイトルです -->
+  <title>S-SYSTEM | Intro</title>
+
+  <!-- 外部CSSファイルを読み込みます -->
+  <link href="index.css" rel="stylesheet" media="all">
+  <!-- ファビコン -->
+  <link rel="icon" href="favicon.ico">
+
+</head>
+
+<body class="intro-page">
+  <!--
+    class="intro-page" を body に付けることで、
+    「このページはイントロ画面用のデザインを使う」と CSS 側で判別できます
+  -->
+
+  <!-- 画面全体の土台になる部分です -->
+  <main class="page">
+    <!-- 背景のやわらかい光の装飾です -->
+    <div class="sky-glow"></div>
+
+    <!--
+      画面中央に表示するロゴと説明文です
+      section は「ひとかたまりの内容」を表すHTMLタグです
+    -->
+    <section class="content" aria-label="イントロ画面">
+      <!--
+        ロゴ本体です
+        最初の S だけ span で囲んでいるので、
+        CSS でこの S だけ大きくできます
+      -->
+      <h1 class="logo">
+        <span class="logo-first">S</span>-system
+      </h1>
+
+      <!-- 補助メッセージです -->
+      <p class="lead-text">
+        雲をタップすると、<br>
+        本画面へ移動します
+      </p>
+    </section>
+  </main>
+
+  <!--
+    画面全体を覆う「雲のレイヤー」です
+    最初はこの雲が前面にあるため、本画面は隠れています
+
+    id="cloudOverlay"
+      → JavaScript がこの要素を探すための名前
+
+    role="button"
+      → これはボタンのように操作できる要素だと補助技術に伝えます
+
+    tabindex="0"
+      → キーボードでも選択できるようにします
+  -->
+  <div class="cloud-overlay" id="cloudOverlay" role="button" tabindex="0" aria-label="本画面へ進む">
+    <!-- 雲の中央に表示する案内テキストです -->
+    <div class="cloud-copy">
+      <strong>Tap to Enter</strong>
+      <span>S-system 代表 佐々木 健二</span>
+    </div>
+  </div>
+
+  <!-- 外部JavaScriptファイルを読み込みます -->
+  <script src="index.js"></script>
+</body>
+
+</html>
