@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <!-- 文字コードの指定。日本語を正しく表示するために必要です -->
   <meta charset="UTF-8">
-
+  <meta name="keywords" content="S-system、函館、清掃、ハウスクリーニング、二等無人航空機操縦士、ドローン,drone, ">
   <!--
     スマホで正しい横幅・拡大率で表示するための設定です
     width=device-width : 端末の幅に合わせる
@@ -17,7 +18,11 @@
 
   <!-- 外部CSSファイルを読み込みます -->
   <link href="index.css" rel="stylesheet" media="all">
+  <!-- ファビコン -->
+  <link rel="icon" href="favicon.ico">
+
 </head>
+
 <body class="intro-page">
   <!--
     class="intro-page" を body に付けることで、
@@ -64,13 +69,7 @@
     tabindex="0"
       → キーボードでも選択できるようにします
   -->
-  <div
-    class="cloud-overlay"
-    id="cloudOverlay"
-    role="button"
-    tabindex="0"
-    aria-label="本画面へ進む"
-  >
+  <div class="cloud-overlay" id="cloudOverlay" role="button" tabindex="0" aria-label="本画面へ進む">
     <!-- 雲の中央に表示する案内テキストです -->
     <div class="cloud-copy">
       <strong>Tap to Enter</strong>
@@ -81,4 +80,5 @@
   <!-- 外部JavaScriptファイルを読み込みます -->
   <script src="index.js"></script>
 </body>
+
 </html>
