@@ -20,7 +20,7 @@
   --panel-bg: rgba(255, 255, 255, 0.78);
   /* top to enterの文字 */
   --panel-text: #2d6e93;
-    /* --panel-text: red; */
+  /* --panel-text: red; */
 
   /**/
 
@@ -557,6 +557,44 @@ body.main-page {
   100% {
     transform: scale(1.03) translateY(-6px);
   }
+}
+
+/* =========================================
+   0. ドローン・カスタムカーソルの動的切り替え
+   （ここをCSSの一番上に貼り付けます）
+========================================= */
+
+/* --- 1. 通常時（移動中）：赤いドローン --- */
+html,
+body {
+  /* 【解説】
+     url('img/red-drone64.png'): 画像の場所
+     32 32: 64x64px画像の中心（32, 32）をクリック位置にする設定
+     auto: 予備のカーソル
+  */
+  cursor: url('img/red-drone64.png') 32 32, auto;
+}
+
+/* --- 2. クリック（長押し）＆ダブルクリック時：黒いドローン --- */
+/* :active（押し込んでいる間）に適用されます */
+html:active,
+body:active {
+  cursor: url('img/black-drone64.png') 32 32, auto;
+}
+
+/* --- 3. ボタンやリンクの上：ここでも切り替わるように設定 --- */
+/* こうすることで、ボタンに「接近」して「クリック」する没入感が出ます
+*/
+a,
+button,
+.contact-button {
+  cursor: url('img/red-drone64.png') 32 32, pointer;
+}
+
+a:active,
+button:active,
+.contact-button:active {
+  cursor: url('img/black-drone64.png') 32 32, pointer;
 }
 
 /* =========================================
