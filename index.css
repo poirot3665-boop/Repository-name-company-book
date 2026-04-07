@@ -387,44 +387,56 @@ body.main-page {
 }
 
 /* ▼▼▼ ここから背景ロゴの設定 ▼▼▼ */
-/* .main-container の外側に独立させて記述します（入れ子にしない） */
-.main-container::before {
-  content: "";
-  /* 擬似要素を表示するための必須記述 */
-  position: absolute;
-  /* .main-containerを基準に自由配置 */
-  /* 配置の基準：ボックスの一番下に固定 */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  /* 横幅いっぱい */
-  height: 350px;
-  /* 下から350pxの範囲内だけで表示（上部の重要情報と重ならない工夫） */
-  /* 高さを100%にせず、下から300px分などの「範囲」に限定することで、
-     スマホで縦長になってもロゴが上に置いていかれるのを防ぎます。*/
-  height: 350px;
-  /* 文字や表よりも背面へ配置 */
-  z-index: -1;
-  /* ロゴの設定 */
-  background-image: url('img/S-system.png');
-  background-repeat: no-repeat;
+/* --- 1. 会社概要の白いボックス本体 --- */
+.main-container {
+  width: min(92vw, 920px);
+  padding: 40px 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
 
-  /* ★ここが最重要ポイント★
-     「下の中央」に固定します。これでコンテンツが伸びても常に下側にいます。
-  */
-  background-position: center bottom 20px;
-
-  /* ロゴのサイズ調整。
-     スマホで見ても圧迫感がないよう、少し控えめに設定します。
-  */
-  background-size: 50% auto;
- /* 心理的に見やすい薄さ（6%） */
-  opacity: 0.06;
-  /* ロゴが地図操作や文字選択を邪魔しないように「幽霊化」する設定 */
-  pointer-events: none;
+  /* ▼ 背景ロゴをこの箱の中に正しく収めるための3大設定 ▼ */
+  position: relative; /* ロゴを配置する時の「基準のものさし」になります */
+  isolation: isolate; /* ロゴが白い背景の下に隠れてしまうのを防ぐ魔法の1行 */
+  overflow: hidden;  /* ボックスの角丸からはみ出したロゴを綺麗にカットします */
 }
 
-/* ▲▲▲ ここまで背景ロゴの設定 ▲▲▲ */
+/* --- 2. 背景ロゴ（見出し「会社概要」を基準に配置） --- */
+/* 本体（.main-container）の外側に書くことでエラーを防ぎます */
+.main-container::before {
+  content: "";            /* 疑似要素を表示するための決まり文句 */
+  position: absolute;     /* 親要素(.main-container)の上端を基準に自由に配置 */
+  
+  /* 【スマホ対策の最重要ポイント】
+     bottom（下）ではなく top（上）から数えることで、
+     表が下にどれだけ伸びても「会社概要」の文字との位置関係がズレません。
+  */
+  top: 90px;              /* 「会社概要」の漢字のすぐ後ろに来るよう上から90pxに固定 */
+  left: 0;
+  width: 100%;            /* 横幅いっぱい */
+  height: 400px;          /* ロゴを表示させる有効範囲。表の中ほどまでをカバー */
+  
+  z-index: -1;            /* 文字や表よりも背面（後ろ側）に配置 */
+
+  /* ロゴ画像の設定 */
+  background-image: url('img/S-system.png');
+  background-repeat: no-repeat;
+  
+  /* 表示位置を「上端の中央」に固定 */
+  background-position: center top; 
+  
+  /* ロゴのサイズ調整：画面横幅の50%の大きさにし、スマホでも圧迫感を与えない */
+  background-size: 50% auto; 
+  
+  /* 透明度：6%（0.06）。
+     他者が読んだときに文字の邪魔をせず、プロっぽい高級感を出す薄さです。
+  */
+  opacity: 0.06;
+  
+  /* ユーザーがこの場所をタップしても、地図やリンクの邪魔をしない設定 */
+  pointer-events: none;
+}/* ▲▲▲ ここまで背景ロゴの設定 ▲▲▲ */
 
 
 /* 本画面用ロゴ */
