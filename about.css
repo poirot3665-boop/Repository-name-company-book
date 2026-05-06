@@ -1,0 +1,369 @@
+/* 全体背景 */
+body.main-page {
+    margin: 0;
+    padding: 20px;
+    /* 画面の高さが足りなくてもフッターを下に置くための設定 */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* ★重要：中身を「縦」に並べる命令 */
+    align-items: center;
+    /* 横方向の中央寄せ */
+    background: linear-gradient(180deg, #bfeaff, #f8fdff);
+    font-family: sans-serif;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+/* 会社概要を囲む白いボックス */
+
+/* =========================================
+   2. メインコンテンツ（会社概要の白い箱）
+========================================= */
+.company-container {
+    /* フッターを一番下に押し下げる魔法 */
+    flex: 1;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px 30px 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        /* パディングを含めたサイズ計算にする */
+    box-sizing: border-box;
+}
+
+
+/* 2. ロゴ（h1）の上下の余白を強制リセット */
+.logo {
+    margin-top: 0 !important;
+    /* 外側の上の余白をゼロに */
+    padding-top: 0 !important;
+    /* 内側の上の余白をゼロに */
+    margin-bottom: 10px !important;
+    /* 下（会社概要の文字）との間隔を少しだけ空ける */
+
+    line-height: 1.0;
+    /* 文字自体の上下幅をギュッと詰める */
+    display: block;
+    /* 確実にブロック要素として扱う */
+    text-align: center;
+    font-size: 5rem;
+    margin-bottom: 30px;
+}
+
+
+.logo-first {
+    color: #000;
+    font-size: 1.2em;
+}
+
+/* 表のデザイン */
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profile-table th,
+.profile-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.profile-table th {
+    width: 30%;
+    color: #555;
+}
+
+/* ボタンのデザイン */
+.contact-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background: #1e88e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+/* =========================================
+   会社概要の地図設定
+========================================= */
+
+/* 会社概要の地図エリアの設定 */
+.company-map {
+    margin-top: 15px;
+    /* 住所の文字との間の隙間 */
+    border: 1px solid #eee;
+    /* 地図の周りに薄いグレーの枠線を引く */
+    border-radius: 8px;
+    /* 地図の角を丸くして柔らかい印象に */
+    overflow: hidden;
+    /* 地図が角丸からはみ出さないようにする設定 */
+    line-height: 0;
+    /* 地図の下にできる謎の隙間を解消する */
+    width: 100%;
+    /* 枠自体も横いっぱいに広げる */
+}
+
+/* スマホで見るときは少し地図を低くする調整 */
+@media (max-width: 600px) {
+    .company-map iframe {
+        height: 150px;
+    }
+}
+
+/* =========================================
+   3. フッター（黒い帯：横ずれ防止版）
+========================================= */
+/* .site-footer { */
+/* ★重要：横並びを解除して画面いっぱいに広げる */
+/* width: 100%; */
+/* background-color: #333; */
+/* color: #fff; */
+/* text-align: center; */
+/* padding: 30px 0; */
+/* 確実に「白い箱」の下に来るようにする */
+/* clear: both; */
+/* margin-top: auto; */
+/* } */
+
+/* フッター内の文字 */
+.footer-logo {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* =========================================
+   7. TOPボタン (Pagetop)
+   画面の右下に浮いていて、クリックで上に戻るボタン
+========================================= */
+
+.pagetop {
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    /* 画面に固定（これがないと流れて消えます） */
+    /* 画面に固定 */
+    right: 20px;
+    /* 右端からの距離 */
+    bottom: 20px;
+    /* 下端からの距離（footerより手前に配置）他の要素より上に表示（これがないと背面に隠れます） */
+    z-index: 9999;
+    /* ★最前面に持ってくる★ */
+    display: block;
+    /* 確実に表示 */
+}
+
+.pagetop a {
+    /* リンク範囲をボタン全体に広げる */
+    display: flex;
+    flex-direction: column;
+    /* 矢印と文字を縦に並べる */
+    /* 中身を中央に寄せる */
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+
+    /* 中の矢印を少し下にずらすための余白 */
+    /* padding-top: 10px; */
+
+    /* paddingを含めても45pxのサイズを維持する計算方法 */
+    /* box-sizing: border-box; */
+
+    /* ボタンの背景：白（0.5 = 半透明）
+       ※後ろの景色が少し透けておしゃれに見えます */
+    background: rgba(255, 255, 255, 0.5);
+
+    /* 角丸を50%にすることで「正円」にする */
+    border-radius: 50%;
+
+    /* リンクの線を消し、文字を中央に寄せる */
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    /* text-align: center; */
+    /* font-size: 12px; */
+}
+
+/* マウスを乗せたとき（ホバー時）の変化 */
+.pagetop a:hover {
+    /* 背景をドローン警告灯のような黄色（シンプソンズ系）に変更 */
+    background: rgba(255, 192, 9, 1);
+
+    /* 文字や矢印の色を濃いグレーにする */
+    color: #333;
+}
+
+/* ボタンの中にある「∧」マーク（矢印）をCSSで自作 */
+.pagetop a::before {
+    /* 空の要素を作る */
+    content: "";
+    display: block;
+
+    /* 矢印のサイズ：縦横10px */
+    width: 10px;
+    height: 10px;
+
+    /* 中央に配置 */
+    /* margin: auto; */
+    margin-top: 4px;
+    /* 位置の微調整 */
+
+    /* 上と右だけに線を引く（L字を逆さにした形） */
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+
+    /* 【魔法の一行】L字を左に45度回転させて「∧」の形にする */
+    transform: rotate(-45deg);
+}
+
+/* =========================================
+   0. ドローン・カスタムカーソルの動的切り替え
+   （ここをCSSの一番上に貼り付けます）
+========================================= */
+
+/* --- 1. 通常時（移動中）：赤いドローン --- */
+html,
+body {
+    /* 【解説】
+     url('img/red-drone64.png'): 画像の場所
+     32 32: 64x64px画像の中心（32, 32）をクリック位置にする設定
+     auto: 予備のカーソル
+  */
+    cursor: url('img/red-drone64.png') 32 32, auto;
+}
+
+/* --- 2. クリック（長押し）＆ダブルクリック時：黒いドローン --- */
+/* :active（押し込んでいる間）に適用されます */
+html:active,
+body:active {
+    cursor: url('img/black-drone64.png') 32 32, auto;
+}
+
+/* --- 3. ボタンやリンクの上：ここでも切り替わるように設定 --- */
+/* こうすることで、ボタンに「接近」して「クリック」する没入感が出ます
+*/
+a,
+button,
+.contact-button {
+    cursor: url('img/red-drone64.png') 32 32, pointer;
+}
+
+a:active,
+button:active,
+.contact-button:active {
+    cursor: url('img/black-drone64.png') 32 32, pointer;
+}
+
+/* chtgptに書いてもらった */
+/* =========================================
+   レスポンシブ対応
+========================================= */
+
+/* ---------- タブレット（〜900px） ---------- */
+@media (max-width: 900px) {
+
+    .company-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 3.5rem;
+    }
+
+    .profile-table th,
+    .profile-table td {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .contact-btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ---------- スマホ（〜600px） ---------- */
+@media (max-width: 600px) {
+
+    body.main-page {
+        padding: 10px;
+    }
+
+    .company-container {
+        width: 100%;
+        margin: 10px auto;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .logo {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .logo-first {
+        font-size: 1.1em;
+    }
+
+    /* ▼ テーブルを縦表示に変える（超重要） */
+    .profile-table,
+    .profile-table tbody,
+    .profile-table tr,
+    .profile-table th,
+    .profile-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .profile-table tr {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .profile-table th {
+        font-size: 0.8rem;
+        color: #888;
+        border: none;
+        padding: 5px 0;
+    }
+
+    .profile-table td {
+        padding: 10px 0 15px;
+        border: none;
+        font-size: 0.95rem;
+    }
+
+    /* 地図 */
+    .company-map iframe {
+        height: 180px;
+    }
+
+    /* ボタン */
+    .contact-btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    /* TOPボタン少し小さく */
+    .pagetop {
+        width: 40px;
+        height: 40px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .pagetop a {
+        width: 40px;
+        height: 40px;
+    }
+}

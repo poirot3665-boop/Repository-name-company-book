@@ -2,115 +2,83 @@
 <html lang="ja">
 
 <head>
-  <!-- 日本語表示用の文字コードです -->
+  <!-- 【基本設定】文字化けを防ぎ、検索エンジンに函館の清掃・ドローン事業であることを伝えます -->
   <meta charset="UTF-8">
-  <meta name="keywords" content="S-system、函館、清掃、ハウスクリーニング、二等無人航空機操縦士、ドローン,drone, ">
-  <!-- スマホで見やすく表示するための設定です -->
+  <meta name="keywords" content="S-system、函館、清掃、ハウスクリーニング、二等無人航空機操縦士、ドローン,drone">
+  
+  <!-- 【スマホ対応】画面幅に合わせて表示を調整し、iPhoneのノッチ（画面上部の切り欠き）部分まで背景を広げます -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <!-- ページタイトルです -->
   <title>S-SYSTEM | Main</title>
 
-  <!-- index.html と同じCSSを使います -->
+  <!-- 【外部ファイル】デザインを決めるCSSファイルを読み込みます -->
   <link href="index.css" rel="stylesheet" media="all">
-  <!-- ファビコン -->
   <link rel="icon" href="favicon.ico">
-
 </head>
 
-<header id="header">
-  <title>S-SYSTEM | Main</title>
-</header>
-
+<!-- 
+  【重要】bodyタグに「main-page」というクラスを付けます。
+  これにより、CSSで書いた「画面中央に寄せる設定」がこのページ全体に適用されます。
+-->
 <body class="main-page">
-  <!--
-    class="main-page" を付けることで、
-    CSS 側で「これは本画面用の見た目」と切り替えられます
-  -->
 
-  <!-- 本画面の中身をまとめる箱です -->
+  <!-- 
+    【メインコンテナ】画面中央に表示される白いカード型の箱です。
+    ここに会社のロゴやメニューをまとめて入れます。
+  -->
   <section class="main-container">
-    <!-- 本画面側にもロゴを表示 -->
-    <div class="main-logo">
-      <span class="main-logo-first">S</span>-SYSTEM
+    
+    <!-- ロゴ部分：「S」だけ大きくするデザインを継承しています -->
+    <div class="main-logo"><span class="main-logo-first">S</span>-SYSTEM</div>
+    
+    <!-- 見出し：CONTENTSの下に少し余白を設けています -->
+    <h2 style="margin-bottom: 25px;">CONTENTS</h2>
+
+    <!-- 【メニューリスト】各事業へのリンクボタン（カード）を並べる親要素です -->
+    <div class="menu-list">
+
+      <!-- 1. 会社概要カード -->
+      <a href="../about/about.html" class="menu-card">
+        <div class="menu-icon">🏢</div>
+        <div class="menu-info">
+          <h3>Company Profile</h3>
+          <p>会社概要・代表挨拶・所在地</p>
+        </div>
+      </a>
+
+      <!-- 2. 清掃事業カード -->
+      <a href="cleaning.html" class="menu-card">
+        <div class="menu-icon">🧹</div>
+        <div class="menu-info">
+          <h3>Cleaning Service</h3>
+          <p>高所・足場作業、ハウスクリーニング</p>
+        </div>
+      </a>
+
+      <!-- 3. ドローン事業カード -->
+      <a href="drone.html" class="menu-card">
+        <div class="menu-icon">🛸</div>
+        <div class="menu-info">
+          <h3>Drone Business</h3>
+          <p>建物診断、赤外線調査、空撮</p>
+        </div>
+      </a>
+
     </div>
 
-    <h2>会社概要</h2>
-
-    <table class="profile-table">
-      <tr>
-        <th>名称</th>
-        <td>S-system</td>
-      </tr>
-      <tr>
-        <th>代表者</th>
-        <td>佐々木 健二</td>
-      </tr>
-      <tr>
-        <th>所在地</th>
-        <td>〒041-0821<br>北海道函館市港町3丁目4番22号 M＆E205<br>
-          <div class="company-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d312.5791746894389!2d140.71735262950776!3d41.81169274657336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9ef6af69a46a65%3A0x9ba5dd79e13d2933!2zTSZFLCDvvJPkuIHnm64t77yULe-8ku-8kSDmuK_nlLog5Ye96aSo5biCIOWMl-a1t-mBkyAwNDEtMDgyMQ!5e0!3m2!1sja!2sjp!4v1775457094745!5m2!1sja!2sjp"
-              width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <th>TEL</th>
-        <td>090-6445-1070</td>
-      </tr>
-      <tr>
-        <th>Mail</th>
-        <td>S-system2025@outlook.jp</td>
-      </tr>
-      <tr>
-        <th>設立</th>
-        <td>2024年12月</td>
-      </tr>
-      <tr>
-        <th></th>
-        <td></td>
-      </tr>
-      <tr>
-        <th></th>
-        <td></td>
-      </tr>
-      <tr>
-        <th></th>
-        <td></td>
-      </tr>
-    </table>
-
-    <p>
-      函館を拠点に、プロの清掃技術と<br>
-      ドローンによる建物メンテナンスを提供いたします。
-    </p>
-
-    <a href="mailto:S-system2025@outlook.jp" class="contact-button">お問い合わせメールを送る</a>
+    <!-- 【お問い合わせ】メールソフトが立ち上がる特別なボタンです -->
+    <a href="mailto:S-system2025@outlook.jp" class="contact-button">お問い合わせメール</a>
+  
   </section>
-  <!-- 見出し -->
-  <!-- <h2>本画面です</h2> -->
 
-  <!-- 説明文 -->
-  <!-- <p>
-      ここにメインコンテンツを配置してください。<br>
-      会社案内、サービス紹介、メニュー、ポートフォリオなどを置けます。
-    </p>
-   </section> -->
-
-  <!--
-    main.html でも index.js を読み込んでいますが、
-    JavaScript 側で「必要な要素があるときだけ動く」ようにしてあるので問題ありません
+  <!-- 
+    【TOPボタン】
+    ここを main-container の「外」に置くのがポイントです。
+    CSSの position: fixed; によって、箱の位置に関係なく画面の右下に固定されます。
   -->
-  <script src="index.js"></script>
-</body>
-<footer>
-  <p>S-system</p>
-  <!-- topボタン --><!-- 上に飛ばすためのハイパーリンク -->
-  <p class="pagetop"><a href="#header">TOP</a></p>
-</footer>
+  <div class="pagetop">
+    <a href="#">TOP</a>
+  </div>
 
+</body>
 </html>

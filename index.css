@@ -322,50 +322,22 @@ body.intro-page {
 /* =========================================
    5. 本画面
 ========================================= */
-/* body.main-page {
-  display: grid;
-  place-items: center;
-
-  padding:
-    max(20px, env(safe-area-inset-top))
-    max(16px, env(safe-area-inset-right))
-    max(20px, env(safe-area-inset-bottom))
-    max(16px, env(safe-area-inset-left));
-
-  background: linear-gradient(180deg, #ffffff 0%, #eefaff 100%);
-  color: var(--main-text);
-} */
 
 /* 試作 */
 
 body.main-page {
   background: linear-gradient(180deg, var(--sky-mid), #fff);
-  display: grid;
-  place-items: center;
+  display: flex;
+  /* gridからflexに変更するとより確実です */
+  justify-content: center;
+  /* 左右の中央 */
+  align-items: center;
+  /* 上下の中央 */
   min-height: 100vh;
+  margin: 0;
+  /* 余計な余白をカット */
   padding: 20px;
 }
-
-/* 本画面の中央ボックス */
-/* .main-container {
-  width: min(92vw, 920px);
-  text-align: center;
-  padding: clamp(24px, 5vw, 48px);
-  background: rgba(255, 255, 255, 0.80);
-  border-radius: 24px;
-  box-shadow: var(--shadow-card);
-  backdrop-filter: blur(6px);
-}
-
-*/
-
-/* 試作  スタイリッシュな感じ*/
-/* .main-container {
-  width: min(92vw, 600px); background: rgba(255, 255, 255, 0.85);
-  padding: 40px 20px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  backdrop-filter: blur(8px); text-align: center;
-}
- */
 
 /* --- 本画面の中央ボックス（ここを修正） 【重要】会社概要などを包む白い中央ボックス--- */
 .main-container {
@@ -381,63 +353,12 @@ body.main-page {
   position: relative;
   /* ★重要：これがないと背景ロゴ(before)がボックス外に飛びます */
   isolation: isolate;
+  /* margin: auto; を入れると、万が一の時も中央に踏みとどまってくれます */
+  margin: auto;
   /* ★重要：背景ロゴが文字や表の下に隠れないようにするおまじない */
-  overflow: hidden;
+  /* overflow: hidden; */
   /* ボックスの角丸からはみ出すロゴをカットします */
 }
-
-/* ▼▼▼ ここから背景ロゴの設定 ▼▼▼ */
-/* --- 1. 会社概要の白いボックス本体 --- */
-.main-container {
-  width: min(92vw, 920px);
-  padding: 40px 20px;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.85);
-
-  /* ▼ 背景ロゴをこの箱の中に正しく収めるための3大設定 ▼ */
-  position: relative; /* ロゴを配置する時の「基準のものさし」になります */
-  isolation: isolate; /* ロゴが白い背景の下に隠れてしまうのを防ぐ魔法の1行 */
-  overflow: hidden;  /* ボックスの角丸からはみ出したロゴを綺麗にカットします */
-}
-
-/* --- 2. 背景ロゴ（見出し「会社概要」を基準に配置） --- */
-/* 本体（.main-container）の外側に書くことでエラーを防ぎます */
-.main-container::before {
-  content: "";            /* 疑似要素を表示するための決まり文句 */
-  position: absolute;     /* 親要素(.main-container)の上端を基準に自由に配置 */
-  
-  /* 【スマホ対策の最重要ポイント】
-     bottom（下）ではなく top（上）から数えることで、
-     表が下にどれだけ伸びても「会社概要」の文字との位置関係がズレません。
-  */
-  top: 90px;              /* 「会社概要」の漢字のすぐ後ろに来るよう上から90pxに固定 */
-  left: 0;
-  width: 100%;            /* 横幅いっぱい */
-  height: 400px;          /* ロゴを表示させる有効範囲。表の中ほどまでをカバー */
-  
-  z-index: -1;            /* 文字や表よりも背面（後ろ側）に配置 */
-
-  /* ロゴ画像の設定 */
-  background-image: url('img/S-system.png');
-  background-repeat: no-repeat;
-  
-  /* 表示位置を「上端の中央」に固定 */
-  background-position: center top; 
-  
-  /* ロゴのサイズ調整：画面横幅の50%の大きさにし、スマホでも圧迫感を与えない */
-  background-size: 50% auto; 
-  
-  /* 透明度：6%（0.06）。
-     他者が読んだときに文字の邪魔をせず、プロっぽい高級感を出す薄さです。
-  */
-  opacity: 0.06;
-  
-  /* ユーザーがこの場所をタップしても、地図やリンクの邪魔をしない設定 */
-  pointer-events: none;
-}/* ▲▲▲ ここまで背景ロゴの設定 ▲▲▲ */
-
 
 /* 本画面用ロゴ */
 .main-logo {
@@ -448,23 +369,6 @@ body.main-page {
   font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1;
-}
-
-/* */
-
-/* 試作 */
-
-/*.main-logo {
-  color: #2d6e93;
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 20px;
-}*/
-
-.main-logo-first {
-  font-size: 1.45em;
-  font-weight: 800;
-  display: inline-block;
 }
 
 /* 本画面でも最初の S を大きくする */
@@ -583,110 +487,40 @@ footer p {
 }
 
 /* =========================================
-   会社概要の地図設定
-========================================= */
-
-/* 会社概要の地図エリアの設定 */
-.company-map {
-  margin-top: 15px;
-  /* 住所の文字との間の隙間 */
-  border: 1px solid #eee;
-  /* 地図の周りに薄いグレーの枠線を引く */
-  border-radius: 8px;
-  /* 地図の角を丸くして柔らかい印象に */
-  overflow: hidden;
-  /* 地図が角丸からはみ出さないようにする設定 */
-  line-height: 0;
-  /* 地図の下にできる謎の隙間を解消する */
-  width: 100%;
-  /* 枠自体も横いっぱいに広げる */
-}
-
-/* スマホで見るときは少し地図を低くする調整 */
-@media (max-width: 600px) {
-  .company-map iframe {
-    height: 150px;
-  }
-}
-
-/* TOPボタン */
-/* =========================================
-   6. フッター (Footer) 
-   画面下部の黒い帯状のエリア
-========================================= */
-footer {
-  /* 横幅を画面いっぱいに広げる */
-  width: 100%;
-
-  /* 余白（padding）を含めて100%の幅に収める設定（はみ出し防止） */
-  box-sizing: border-box;
-
-  /* 中の文字やボタンを中央に寄せる */
-  text-align: center;
-
-  /* 上下の余白：1.5rem（適度な厚みを持たせる） */
-  padding: 1.5rem 10px;
-
-  /* 背景色：画像(image_19.png)のような濃いグレー */
-  background-color: #333333;
-
-  /* 文字色：背景に合わせて真っ白に */
-  color: #ffffff;
-
-  /* 上のコンテンツ（メイン画面）との境界に3remの距離を作る */
-  margin-top: 3rem;
-
-  /* 角の丸み：シャープな印象を出すため、ごくわずかに丸める */
-  border-radius: 4px;
-}
-
-/* フッター内の社名テキスト (S-system) */
-footer p {
-  /* ブラウザ標準の余白を消して、上下中央に見えるようにする */
-  margin: 0;
-
-  /* 文字サイズ：社名として認識しやすい大きさ */
-  font-size: 0.85rem;
-
-  /* 文字の間隔：少し広げる（0.1em）とプロっぽい仕上がりになります */
-  letter-spacing: 0.1em;
-
-  /* 文字の太さ：力強い印象にするため太字に */
-  font-weight: bold;
-}
-
-/*pagetop*/
-/* =========================================
    7. TOPボタン (Pagetop)
    画面の右下に浮いていて、クリックで上に戻るボタン
 ========================================= */
 
 .pagetop {
-  /* ボタンの箱のサイズ */
   width: 45px;
   height: 45px;
-
-  /* 【配置の要】画面に対して「固定」して表示する */
-  position: fixed;
-
-  /* 右端から10px、下から70pxの位置に固定
-       （数字を大きくすると内側に移動します） */
-  right: 10px;
-  bottom: 90px;
-  /*高さ調整*/
+  position: fixed;   /* 画面に固定（これがないと流れて消えます） */
+  /* 画面に固定 */
+  right: 20px;
+  /* 右端からの距離 */
+  bottom: 20px;
+  /* 下端からの距離（footerより手前に配置）他の要素より上に表示（これがないと背面に隠れます） */
+  z-index: 9999;
+  /* ★最前面に持ってくる★ */
+  display: block;
+  /* 確実に表示 */
 }
 
 .pagetop a {
   /* リンク範囲をボタン全体に広げる */
-  display: block;
+  display: flex;
+  flex-direction: column; /* 矢印と文字を縦に並べる */
+  /* 中身を中央に寄せる */
+  align-items: center;
+  justify-content: center;
   width: 45px;
   height: 45px;
 
   /* 中の矢印を少し下にずらすための余白 */
-  padding-top: 10px;
+  /* padding-top: 10px; */
 
   /* paddingを含めても45pxのサイズを維持する計算方法 */
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 
   /* ボタンの背景：白（0.5 = 半透明）
        ※後ろの景色が少し透けておしゃれに見えます */
@@ -697,8 +531,10 @@ footer p {
 
   /* リンクの線を消し、文字を中央に寄せる */
   text-decoration: none;
-  text-align: center;
-  font-size: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  /* text-align: center; */
+  /* font-size: 12px; */
 }
 
 /* マウスを乗せたとき（ホバー時）の変化 */
@@ -721,7 +557,8 @@ footer p {
   height: 10px;
 
   /* 中央に配置 */
-  margin: auto;
+  /* margin: auto; */
+  margin-top: 4px; /* 位置の微調整 */
 
   /* 上と右だけに線を引く（L字を逆さにした形） */
   border-top: 1px solid #333;
@@ -856,4 +693,104 @@ button:active,
   .cloud-copy {
     transition-duration: 0.5s;
   }
+}
+
+/* -----------------------------------------
+   案内カード（menu-card）のレイアウト
+----------------------------------------- */
+
+/* 【解説】カード同士の隙間を調整 */
+.menu-list {
+  display: flex;
+  /* 子要素（カード）を並べる設定 */
+  flex-direction: column;
+  /* 縦に並べる */
+  gap: 15px;
+  /* カードとカードの間隔 */
+  margin: 25px 0;
+  /* 上下の余白 */
+}
+
+/* 【解説】カード本体のデザイン */
+.menu-card {
+  display: flex;
+  /* アイコンと文字を横に並べる */
+  align-items: center;
+  /* 上下中央揃え */
+  padding: 20px;
+  /* 内側の余白 */
+  background: #ffffff;
+  /* カードの背景色 */
+  border-radius: 15px;
+  /* 角を丸くする */
+  text-decoration: none;
+  /* リンクの下線を消す */
+  border: 1px solid #eefaff;
+  /* 薄い青色の枠線 */
+  transition: all 0.3s ease;
+  /* 動きを滑らかにする（0.3秒かけて変化） */
+  text-align: left;
+  /* 文字を左寄せに */
+}
+
+/* 【解説】マウスを乗せた時（ホバー）の演出 */
+.menu-card:hover {
+  transform: translateY(-5px);
+  /* 上に5pxぴょこっと浮く */
+  background: #f0f9ff;
+  /* 背景を非常に薄い青に変える */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  /* 影をつけて浮遊感を出す */
+  border-color: #d0e8f5;
+  /* 枠線を少し濃くする */
+}
+
+/* 【解説】アイコンとテキストの微調整 */
+.menu-icon {
+  font-size: 2rem;
+  /* アイコンを大きく */
+  margin-right: 20px;
+  /* アイコンと文字の間の隙間 */
+}
+
+.menu-info h3 {
+  margin: 0;
+  /* 余計な余白を消す */
+  color: #1e5a7b;
+  /* タイトルの色 */
+  font-size: 1.1rem;
+}
+
+.menu-info p {
+  margin: 5px 0 0 0;
+  /* タイトルとの間隔 */
+  font-size: 0.85rem;
+  /* 説明文は少し小さめに */
+  color: #666;
+  /* 説明文はグレーにして読みやすく */
+}
+
+/* -----------------------------------------
+   最下部のお問い合わせボタン
+----------------------------------------- */
+.contact-button {
+  display: block;
+  /* 横幅いっぱいに広げる */
+  background: #2d6e93;
+  /* S-systemのメインカラー */
+  color: white;
+  /* 文字は白 */
+  padding: 15px;
+  border-radius: 50px;
+  /* カプセル型のボタン */
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.contact-button:hover {
+  background: #1e5a7b;
+  /* ホバー時に少し濃くする */
+  opacity: 0.9;
 }
