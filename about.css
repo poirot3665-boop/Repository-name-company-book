@@ -137,7 +137,7 @@ body.main-page {
   z-index: -1;            
 
   /* ロゴ画像の設定 */
-  background-image: url('img/s-system-logo.png'); 
+  background-image: url('img/S-system-logo.png'); 
   background-repeat: no-repeat;
   
   /* 位置：上端の中央（topのままでOKです） */
@@ -146,7 +146,7 @@ body.main-page {
   /* ロゴの大きさ（55%のままでバッチリです） */
   background-size: 55% auto; 
   
-  /* 透過加減（0.04のままで完璧な透け感です） */
+  /* 文字の透過加減（0.04のままで完璧な透け感です） */
   opacity: 0.04;
   
   pointer-events: none; 
