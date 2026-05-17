@@ -89,6 +89,69 @@ body.main-page {
     font-weight: bold;
 }
 
+/* ▼▼▼ ここから【中央背景】にうっすら大きく透かすロゴの設定 ▼▼▼ */
+/* --- 1. 会社概要の白いボックス本体 --- */
+.company-container {
+  width: min(92vw, 920px);
+  padding: 40px 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center; /* 文字や表はきれいに中央揃えになります */
+  background-color: rgba(255, 255, 255, 0.85);
+
+  /* ▼ 背景ロゴをこの箱の中に正しく収めるための3大設定 ▼ */
+  position: relative; 
+  isolation: isolate; 
+  overflow: hidden;  
+}
+
+/* ▼▼▼ ここから【地図の上部】にうっすら大きく透かすロゴの設定 ▼▼▼ */
+/* --- 1. 会社概要の白いボックス本体 --- */
+.company-container {
+  width: min(92vw, 920px);
+  padding: 40px 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
+
+  /* ▼ 背景ロゴをこの箱の中に正しく収めるための3大設定 ▼ */
+  position: relative; 
+  isolation: isolate; 
+  overflow: hidden;  
+}
+
+/* --- 2. 背景ロゴ（地図の上のスペースに配置） --- */
+.company-container::before {
+  content: "";            
+  position: absolute;     
+  
+  /* 【変更点1】スタート位置を上端から 60px 下げました（10pxから変更） */
+  top: 60px;               
+  left: 0;
+  width: 100%;            
+  
+  /* 【変更点2】下にずらした分、ロゴ全体の有効範囲を少し広げて 320px にします（280pxから変更） */
+  height: 320px;          
+  
+  z-index: -1;            
+
+  /* ロゴ画像の設定 */
+  background-image: url('img/s-system-logo.png'); 
+  background-repeat: no-repeat;
+  
+  /* 位置：上端の中央（topのままでOKです） */
+  background-position: center top; 
+  
+  /* ロゴの大きさ（55%のままでバッチリです） */
+  background-size: 55% auto; 
+  
+  /* 透過加減（0.04のままで完璧な透け感です） */
+  opacity: 0.04;
+  
+  pointer-events: none; 
+}/* ▼▼▼ ここまで【地図の上部】にうっすら大きく透かすロゴの設定 ▼▼▼ */
+
 /* =========================================
    会社概要の地図設定
 ========================================= */
