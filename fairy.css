@@ -1,0 +1,365 @@
+/* =============================================
+   FAIRY TAIL風 クリーニングメニュー用 CSS
+   ファイル名: fairy.css
+   ============================================= */
+
+/* ------------------- 1. 全体の基本設定 ------------------- */
+/* この部分はすべてのページに共通する設定です */
+* {
+  margin: 0;           /* 外側の余白を全部0にする */
+  padding: 0;          /* 内側の余白を全部0にする */
+  box-sizing: border-box; /* 幅や高さを計算しやすくする */
+}
+
+body {
+  background: linear-gradient(#1a1108, #3d2a1f); /* 暗い茶色のグラデーション背景 */
+  height: 100vh;       /* 画面いっぱいに広げる */
+  display: flex;       /* 中央寄せにするための設定 */
+  justify-content: center;
+  align-items: center;
+  font-family: 'Georgia', serif; /* 少し古風で読みやすいフォント */
+  overflow: hidden;    /* 画面からはみ出さないようにする */
+}
+
+/* ------------------- 2. 全体を包む箱 ------------------- */
+.container {
+  perspective: 1200px; /* 立体感を出すための設定（紙が浮いて見える効果） */
+}
+
+/* ------------------- 3. 木のボード本体 ------------------- */
+.board {
+  width: 1100px;       /* ボードの横幅 */
+  height: 680px;       /* ボードの高さ */
+  background: #8b5a2b; /* 木の茶色 */
+  border: 45px solid #3d2a1f; /* 太い木枠 */
+  border-radius: 8px;  /* 角を少し丸くする */
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.8),     /* 外側の影 */
+    inset 0 0 80px rgba(0, 0, 0, 0.6);  /* 内側の影 */
+  position: relative;  /* 中のものを位置指定しやすくする */
+  overflow: hidden;
+}
+
+/* ボードに木目模様を重ねる */
+.board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0,0,0,0.1) 10px,
+    rgba(0,0,0,0.1) 20px
+  );
+}
+
+/* ------------------- 4. REQUEST BOARD の看板 ------------------- */
+.header {
+  position: absolute;
+  top: 18px;                /* ボードの上からはみ出させる */
+  left: 50%;
+  transform: translateX(-50%); /* 看板を真ん中に寄せる */
+  background: linear-gradient(#e8c670, #b38b3d); /* 金色っぽいグラデ */
+  color: #2c1e0f;
+  font-size: 2.8rem;
+  font-weight: bold;
+  /* padding: 12px 80px; */
+  padding: 15px 60px 12px 60px;    /* 上下左右の余白を調整 */
+  border: 12px solid #2c1e0f;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+  text-shadow: 4px 4px 0 #fff;
+  /* white-space: nowrap;*//* 強制的に1行にする */
+  z-index: 20;
+  letter-spacing: 6px;             /* 文字の間隔を少し広げて見やすく */
+  /* ここを追加・強化 */
+  text-align: center;              /* 文字を中央寄せ */
+  line-height: 1.1;                /* 2行になった時の行間 */
+  min-width: 420px;                /* 看板の最低横幅（調整可能） */
+}
+
+/* ------------------- 5. 依頼書（紙）の共通デザイン ------------------- */
+.paper {
+  position: absolute;      /* ボードの中で自由に位置を決められる */
+  width: 190px;            /* 紙の横幅 */
+  background: #f8f0d8;     /* 古い紙のような色 */
+  padding: 15px 12px;      /* 中の余白 */
+  box-shadow: 6px 10px 15px rgba(0,0,0,0.6), /* 影 */
+              inset 0 0 8px rgba(139, 90, 43, 0.3);
+  border: 3px solid #3d2a1f;
+  cursor: pointer;         /* マウスを乗せると手のカーソルになる */
+  transition: all 0.4s ease; /* ホバー時の動きを滑らかに */
+}
+
+.paper:hover {
+  transform: scale(1.18) rotate(0deg) !important; /* 拡大してまっすぐになる */
+  box-shadow: 10px 20px 25px rgba(0,0,0,0.7);
+  z-index: 30;             /* 一番手前に表示 */
+}
+
+/* 紙の中の文字のデザイン */
+.paper h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: #9c2a2a;          /* 赤っぽいタイトル色 */
+  text-align: center;
+  border-bottom: 2px solid #d4af37;
+  padding-bottom: 5px;
+}
+
+.paper p {
+  font-size: 0.95rem;
+  margin: 6px 0;
+  color: #2c1e0f;
+  text-align: center;
+}
+
+.reward {
+  color: #d4af37;          /* 金色で料金を目立たせる */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ------------------- 6. 各紙の位置と傾き ------------------- */
+.paper1 {
+  top: 18%;
+  left: 5%;
+  transform: rotate(-7deg);
+}
+
+.paper2 {
+  top: 30%;
+  left: 32%;
+  transform: rotate(5deg);
+  /* rotate=左右の振り */
+}
+
+.paper3 {
+  top: 45%;
+  left: 12%;
+  transform: rotate(-4deg);
+}
+
+.paper4 {
+  top: 38%;
+  left: 55%;
+  transform: rotate(8deg);
+}
+
+.paper5 {
+  top: 65%;
+  left: 28%;
+  transform: rotate(-12deg);
+}
+
+.paper6 {
+  top: 57%;
+  left: 68%;
+  transform: rotate(-3deg);
+}
+
+/* ------------------- 7. 会社ロゴ ------------------- */
+.company-logo {
+  position: absolute;
+  bottom: 35px;
+  right: 40px;
+  z-index: 15;
+}
+
+.company-logo img {
+  filter: drop-shadow(5px 8px 8px rgba(0,0,0,0.6));
+  transition: transform 0.4s;
+}
+
+.company-logo img:hover {
+  transform: scale(4.0) rotate(8deg);
+  /* scale=拡大 */
+}
+
+/* =============================================
+   ★★★ 新しく追加：クリック時の詳細モーダル ★★★
+   一番下に追加
+   ============================================= */
+
+/* ------------------- 詳細モーダル（クリックで出てくる窓） ------------------- */
+/* この部分は、紙をクリックしたときに表示される「詳しい説明」のデザインです */
+#detail-modal {
+  position: fixed;           /* 画面全体に固定表示 */
+  top: 0;
+  left: 0;
+  width: 100%;               /* 画面の横幅いっぱい */
+  height: 100%;              /* 画面の高さいっぱい */
+  background: rgba(0, 0, 0, 0.8); /* 背景を暗くしてモーダルを目立たせる */
+  display: flex;             /* 中身を中央寄せにする */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;             /* 一番手前に表示 */
+}
+
+/* モーダルの中身（白い紙のような箱） */
+#detail-modal .modal-content {
+  background: #f8f0d8;       /* 紙と同じ色 */
+  max-width: 560px;          /* 最大の横幅（これ以上広くなりすぎない） */
+  padding: 35px 30px;        /* 内側の余白 */
+  border: 10px solid #3d2a1f; /* 太い枠 */
+  border-radius: 8px;        /* 角を少し丸く */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9); /* 強い影 */
+  color: #2c1e0f;
+  text-align: left;          /* 文字は左寄せ（読みやすく） */
+  line-height: 1.7;          /* 行間を広げて読みやすく */
+  max-height: 85vh;          /* 画面の高さを超えないように */
+  overflow-y: auto;          /* 内容が長い場合はスクロール可能 */
+}
+
+/* モーダル内のタイトル */
+#detail-modal h2 {
+  color: #9c2a2a;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+/* モーダル内の料金表示 */
+#detail-modal .price {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: #d4af37;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* 詳細説明の囲み */
+#detail-modal .detail-box {
+  background: #fff9e6;
+  padding: 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  border-left: 5px solid #d4af37;
+}
+/*  */
+#detail-modal h3 {
+  color: #3d2a1f;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  font-size: 1.35rem;
+}
+
+/* サブタイトルのスタイル（モーダル内） */
+#detail-modal .subtitle {
+  color: #3d2a1f;
+  text-align: center;
+  font-size: 1.4rem;
+  margin: 12px 0 20px 0;
+  font-weight: bold;
+}
+
+/* =========================================
+   0. サイト全体：ドローン・カスタムカーソルの完全統一
+   （トップ、説明画面、詳細、すべてのリンクやボタンでドローンを維持します）
+========================================= */
+
+/* --- 1. 通常時＆すべての要素の上：赤いドローン --- */
+*, 
+html, 
+body, 
+a, 
+button, 
+input, 
+select, 
+textarea, 
+.fusen-link,
+.profile-table,
+.contact-btn,
+.company-map {
+    /* 「*（すべての要素）」を指定し、さらに個別タグも網羅して、
+       ブラウザが勝手に指マークや矢印に戻すのを強制的にブロックします */
+    cursor: url('img/red-drone64.png') 32 32, auto !important;
+}
+
+/* --- 2. クリック（長押し）時＆すべての要素の上：黒いドローン --- */
+*:active,
+html:active,
+body:active,
+a:active,
+button:active,
+.fusen-link:active,
+.contact-btn:active {
+    /* どこをクリックしても、押し込んでいる間は確実に黒いドローンに切り替わります */
+    cursor: url('img/black-drone64.png') 32 32, auto !important;
+}
+/* =============================================
+   レスポンシブ対応（スマホ・タブレット対応）
+   ============================================= */
+
+@media (max-width: 1200px) {
+  .board {
+    width: 95vw;           /* 画面幅の95%に自動調整 */
+    height: auto;
+    min-height: 620px;
+    margin: 20px;
+  }
+
+  .header {
+    font-size: 2.2rem;
+    padding: 10px 40px;
+    top: -38px;
+  }
+}
+
+/* タブレット向け */
+@media (max-width: 900px) {
+  .paper {
+    width: 160px;          /* 紙を少し小さく */
+    padding: 14px 10px;
+  }
+
+  .paper h3 {
+    font-size: 1.05rem;
+  }
+}
+
+/* スマホ向け（最も重要） */
+@media (max-width: 600px) {
+  .board {
+    width: 98vw;
+    height: auto;
+    min-height: 580px;
+    border-width: 25px;    /* 枠を少し細く */
+  }
+
+  .header {
+    font-size: 1.85rem;
+    padding: 8px 30px;
+    top: -32px;
+    letter-spacing: 2px;
+  }
+
+  .paper {
+    width: 135px;          /* スマホではさらに小さく */
+    padding: 12px 8px;
+  }
+
+  .paper h3 {
+    font-size: 0.95rem;
+  }
+
+  .paper p {
+    font-size: 0.85rem;
+  }
+
+  /* 紙の位置をスマホで調整（重なり防止） */
+  .paper1 { top: 18%; left: 5%; }
+  .paper2 { top: 22%; left: 48%; }
+  .paper3 { top: 48%; left: 8%; }
+  .paper4 { top: 38%; left: 52%; }
+  .paper5 { top: 68%; left: 10%; }
+  .paper6 { top: 65%; left: 55%; }
+}
+
+/* 極小画面対応 */
+@media (max-width: 380px) {
+  .paper {
+    width: 120px;
+  }
+}
