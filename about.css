@@ -146,7 +146,7 @@ body.main-page {
   /* ロゴの大きさ（55%のままでバッチリです） */
   background-size: 55% auto; 
   
-  /* 文字の透過加減（0.04のままで完璧な透け感です） */
+  /* 透過加減（0.04のままで完璧な透け感です） */
   opacity: 0.04;
   
   pointer-events: none; 
