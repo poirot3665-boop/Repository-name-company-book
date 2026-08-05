@@ -430,3 +430,58 @@ button:active,
         height: 40px;
     }
 }
+
+/* ナビ */
+.menu {
+    /* メニュー項目が横並びに */
+    display: flex;
+    /*※コメントが上下不揃いの時、子要素（li）を垂直方向に中央揃えにする */
+    align-items: center;
+    /* 画面幅が狭いときに自動で折り返す */
+    flex-wrap: wrap;
+    /* メニュー全体を中央に配置する */
+    justify-content: center;
+    padding: 0;
+    /* 上下の余白と中央揃え */
+    margin: 20px auto;
+    /* リストの黒点を消す */
+    list-style: none;
+}
+
+
+.menu li {
+    margin: 10px;
+    /* list-style: none;
+    border: 1px solid #f00;  だみー 
+    display: inline-block;
+    width: 300px;
+    margin: 20px 10px 0 ; */
+    /* 使うPCによって付加する */
+    /* margin: 0  auto; */
+    /* margin-top: 20px; */
+}
+
+.menu a {
+    display: block;
+    /* 内側の余白 */
+    padding: 10px;
+    /* 外側の余白 */
+    margin: 5% 0;
+    /* background: #007bff; */
+    background-color: #4da6ff;
+    border-radius: 50px;
+    color: #fff;
+    /* 下線を消す/装飾を削除 */
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
+    /* アニメーションを滑らかにする */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+}
+
+/* マウス乗った時*/
+.menu a:hover {
+    background: #ffb566;
+    transform: translateY(-5px)
+}
