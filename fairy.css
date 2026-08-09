@@ -366,55 +366,47 @@ button:active,
 
 /* ナビ */
 .menu {
-    /* メニュー項目が横並びに */
+    /* ▼▼▼ 【重要】画面の左端に固定する設定 ▼▼▼ */
+    position: fixed;        /* 画面に対して位置を固定 */
+    top: 50%;               /* 上下中央の位置へ */
+    transform: translateY(-50%); /* 上下中央のピタッと補正 */
+    left: 15px;             /* 左端から15px浮かせる（これで見切れ解消！） */
+    z-index: 1000;          /* 木枠や背景より手前に表示する */
+
+    /* メニュー項目を縦一列に並べる設定 */
     display: flex;
-    /*※コメントが上下不揃いの時、子要素（li）を垂直方向に中央揃えにする */
+    flex-direction: column; /* 横並びから「縦並び」に変更 */
     align-items: center;
-    /* 画面幅が狭いときに自動で折り返す */
-    flex-wrap: wrap;
-    /* メニュー全体を中央に配置する */
     justify-content: center;
     padding: 0;
-    /* 上下の余白と中央揃え */
-    margin: 20px auto;
-    /* リストの黒点を消す */
+    margin: 0;              /* 固定配置にするため margin: auto は削除 */
     list-style: none;
 }
 
-
 .menu li {
-    margin: 10px;
-    /* list-style: none;
-    border: 1px solid #f00;  だみー 
-    display: inline-block;
-    width: 300px;
-    margin: 20px 10px 0 ; */
-    /* 使うPCによって付加する */
-    /* margin: 0  auto; */
-    /* margin-top: 20px; */
+    margin: 8px 0;          /* 上下のアイコン同士の間隔 */
 }
 
 .menu a {
-    display: block;
-    /* 内側の余白 */
-    padding: 10px;
-    /* 外側の余白 */
-    margin: 5% 0;
-    /* background: #007bff; */
+    display: flex;          /* アイコンを中央に寄せる */
+    align-items: center;
+    justify-content: center;
+    width: 48px;            /* ボタンの幅を固定 */
+    height: 48px;           /* ボタンの高さを固定 */
+    padding: 0;             /* サイズ固定のため余計なパディングはリセット */
+    margin: 0;              /* 見切れの原因になる % マージンを削除 */
+    
     background-color: #7e838733;
-    border-radius: 50px;
+    border-radius: 50%;     /* きれいな「正円」にする */
     color: #fff;
-    /* 下線を消す/装飾を削除 */
     text-decoration: none;
     text-align: center;
     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
-    /* アニメーションを滑らかにする */
     transition: transform 0.3s ease, background-color 0.3s ease;
-
 }
 
-/* マウス乗った時*/
+/* マウス乗った時 */
 .menu a:hover {
     background: #693702ed;
-    transform: translateY(-5px)
+    transform: scale(1.1);  /* 位置固定時は少し大きくなるアニメーションが見やすいです */
 }
